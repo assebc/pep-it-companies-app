@@ -11,11 +11,25 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
   password   String
-  deleted    Boolean  @default(false)
-  created_at DateTime @default(now())
+  deleted    Boolean   @default(false)
+  created_at DateTime  @default(now())
+  companies  Company[]
 
   @@map("users")
+}
+
+model Company {
+  id            Int     @id @default(autoincrement())
+  name          String
+  website_url   String
+  reviews       String
+  votes         Int     @default(0)
+  deleted       Boolean @default(false)
+  created_by    User    @relation(fields: [created_by_id], references: [id])
+  created_by_id Int
+
+  @@map("companies")
 }
