@@ -25,7 +25,7 @@ model Company {
   id            Int     @id @default(autoincrement())
   name          String
   website_url   String
-  reviews       String
+  reviews       String  @db.LongText
   votes         Int     @default(0)
   deleted       Boolean @default(false)
   created_by    User    @relation(fields: [created_by_id], references: [id])
