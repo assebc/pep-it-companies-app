@@ -134,7 +134,7 @@ function App(){
 
           <div style={{display:"flex", justifyContent:"center", alignItems:"end", flexDirection:"column"}}>
             <Button type="primary" size="large" onClick={showModal} style={{marginBottom:"8px"}}>Criar</Button>
-            {/* FIXME: default size for table */}
+            {/* FIXME:default size for table */}
             <Table style={{height:"30vh"}}columns={columns} pagination={false} dataSource={data}/>
 
             <Modal destroyOnClose 
