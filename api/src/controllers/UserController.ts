@@ -42,7 +42,7 @@ class UserController {
     return response.json(users);
   }
 
-  async updatePassword(request: Request, response: Response) {
+  async forgotPassword(request: Request, response: Response) {
     const { email, newPassword, confirmationPassword } = request.body;
 
     const user: User | null = await prisma.user.findFirst({
@@ -74,7 +74,14 @@ class UserController {
   }
 
   async delete(request: Request, response: Response) {
-    //TODO: implement soft delete from jwt token userID
+    await prisma.user.update({
+      where: { id: request.id },
+      data: {
+        deleted: true,
+      },
+    });
+
+    return response.status(204).end();
   }
 }
 
