@@ -14,14 +14,6 @@ interface Empresa{
   votes: number;
 }
 
-const default_state: Empresa = {
-  key: "",
-  name: "",
-  website_url: "",
-  reviews: "",
-  votes: 0,
-};
-
 const data: Empresa[] = [
    {
      key: "1",
@@ -119,7 +111,6 @@ function App(){
   };
 
   const handleCancel = () => {
-    console.log("Processo cancelado");
     setOpen(false);
   }
 
