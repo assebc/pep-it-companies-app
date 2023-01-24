@@ -1,25 +1,5 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: dark light ;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  --white_pep: #FBFCF8;
-  --grey1_pep: #616161;
-  --grey2_pep: #D9D9D9;
-  --red_pep: #BD242A;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
 *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100%;
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
 }
