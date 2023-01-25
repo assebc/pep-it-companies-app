@@ -1,46 +1,27 @@
-import React, { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./index.css";
-import {Space, Table, Layout, Button, Modal, Form, Input} from "antd"; 
+import { Space, Table, Layout, Button } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import logo from "./assets/pep-logo.png";
-import TextArea from "antd/es/input/TextArea";
-import FormItem from "antd/es/form/FormItem";
+import { companiesData, Empresa } from "./config";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { CreateEditModal } from "./components/CreateEditModal";
 
-interface Empresa{
-  key: string;
-  name: string;
-  website_url: string;
-  reviews: string;
-  votes: number;
-}
+const { Content } = Layout;
 
-const data: Empresa[] = [
-   {
-     key: "1",
-     name: "Critical Techworks",
-     reviews: "Oportunidade de Carreira / Tecnologias de Ponta / Excelente Ambiente de Equipa / Formação Constante / Empresa excelente, muitos benefícios / malta top (Depende do projeto onde calhas) / Os aumentos são bons, Organização boa / os salarios nao sao muito bons, por vezes nao acompanha o crescimento da pessoa / Estrutura muito horizontal, equipas scrum auto geriveis com foco na autonomia. Somos incentivados a ser \"donos do produto\" e nao apenas alguem que faz o que mandam",
-     website_url:"https://www.criticaltechworks.com/",
-     votes: 11,
-   },
-   {
-    key: "2",
-    name: "Blip",
-    reviews: "Boa equipa, boas condiçoes, bons salarios, usam tech recente e bons beneficios",
-    website_url:"https://www.blip.pt/",
-    votes: 3,
-  },
-  {
-    key: "3",
-    name: "Deloitte",
-    reviews: "Excelente para primeiro trabalho, aposta na formação e é uma empresa que dá a oportunidade de se trabalhar com muitas tecnologias diferentes e tem um ambiente de trabalho top entre colegas e equipas. (falo por experiência própria) / Os salários são normais mas exigem demais dos colaboradores / deloitte nao é ma como entry, 1 ano e estas set para entrar facilmente noutro sitio / facilidade de transitar entre stack",
-    website_url:"https://www2.deloitte.com/pt/pt.html",
-    votes: 3,
-  },
-];
+function App() {
+  const [open, setOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [companies, setCompanies] = useState<Empresa[]>();
+  const [company, setCompany] = useState<Empresa>();
 
-const{Header,Content,Footer} = Layout;
-
-function App(){
+  const EMPTY_COMPANY: Empresa = {
+    key: "",
+    name: "",
+    reviews: "",
+    votes: 0,
+    website_url: "",
+  };
 
   const columns: ColumnsType<Empresa> = [
     {
@@ -48,7 +29,8 @@ function App(){
       dataIndex: "name",
       key: "name",
     },
-    { //FIXME: define max size per line
+    {
+      //FIXME: define max size per line
       title: "Informações",
       dataIndex: "reviews",
       key: "reviews",
@@ -57,7 +39,11 @@ function App(){
       title: "Website",
       dataIndex: "website_url",
       key: "website_url",
-      render: text => <a href={text} target="_blank">{text}</a>,
+      render: (text) => (
+        <a href={text} target="_blank">
+          {text}
+        </a>
+      ),
     },
     {
       title: "Votos",
@@ -67,100 +53,92 @@ function App(){
     {
       title: "Ações",
       key: "actions",
-      render: (_,record) => { return (
-        <Space size="middle">
+      render: (_, record) => {
+        return (
+          <Space size="middle">
             <Button>Votar</Button>
-            <Button onClick={() => showModalEdit(record)}>Editar</Button>
-        </Space>
-      )},
+            <Button onClick={() => showModal(record)}>Editar</Button>
+          </Space>
+        );
+      },
     },
   ];
 
-  const [title, setTitle] = useState("");
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [infoName, setName] = useState("");
-  const [infoInfo, setInfo] = useState("");
-  const [infoURL, setURL] = useState("");
+  useEffect(() => {
+    setCompanies(companiesData);
+  }, []);
 
-  const showModal = () => {
+  const showModal = (record?: Empresa) => {
+    if (record) setCompany(record);
     setOpen(true);
-    setTitle("Adicionar uma empresa à tabela");
   };
 
-  const showModalEdit = (record: Empresa) => {
-    showModal();
-    setTitle("Editar empresa já existente");
-    setName(record.name);
-    setInfo(record.reviews);
-    setURL(record.website_url);
-  }
-
-  const resetFields = () => {
-    setName("");
-    setInfo("");
-    setURL("");
-  }
-
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
+  const onHandleOk = useCallback(() => {
+    console.log("on ok");
+    setConfirmLoading(false);
     setOpen(false);
-  }
+  }, []);
+
+  const onHandleCancel = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  const onAfterClose = useCallback(() => {
+    setCompany(EMPTY_COMPANY);
+  }, []);
 
   return (
     <Layout>
-      <Header style={{height:"10vh", top:"0", width:"100%"}}>
-        <a href="https://www.twitch.tv/porqueeuprogramo" target="_blank"><img style={{width:"100px", height:"100px"}} src={logo} alt="PEP LOGO"/></a>
-      </Header>
+      <Header />
 
-      <Content style={{height:"84vh"}}>
-        <div style={{display:"flex", justifyContent:"center", alignItems:"center", padding:"64px 48px"}}>
-
-          <div style={{display:"flex", justifyContent:"center", alignItems:"end", flexDirection:"column"}}>
-            <Button type="primary" size="large" onClick={showModal} style={{marginBottom:"8px"}}>Criar</Button>
+      <Content style={{ height: "84vh" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "64px 48px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "end",
+              flexDirection: "column",
+            }}
+          >
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => showModal()}
+              style={{ marginBottom: "8px" }}
+            >
+              Criar
+            </Button>
             {/* FIXME:default size for table */}
-            <Table style={{height:"30vh"}}columns={columns} pagination={false} dataSource={data}/>
+            <Table
+              style={{ height: "30vh" }}
+              columns={columns}
+              pagination={false}
+              dataSource={companies}
+            />
 
-            <Modal destroyOnClose 
-                   title={title}
-                   open={open}
-                   onOk={handleOk}
-                   confirmLoading={confirmLoading}
-                   onCancel={handleCancel}
-                   afterClose={resetFields}
-                   >
-
-              <Form layout="vertical">
-                <FormItem label={"Nome"}>
-                  <Input placeholder="Nome de empresa" defaultValue={infoName}/>
-                </FormItem>
-
-                <FormItem label={"Informações"}>
-                  <TextArea placeholder="Informações sobre empresa" autoSize={{minRows: 3, maxRows: 5}} defaultValue={infoInfo}/>
-                </FormItem>
-
-                <FormItem label={"URL"}>
-                  <Input placeholder="e.g. https://empresa.com" type="url" defaultValue={infoURL}/>
-                </FormItem>
-              </Form>
-            </Modal>
-
+            <CreateEditModal
+              company={company}
+              open={open}
+              confirmLoading={confirmLoading}
+              onHandleOk={onHandleOk}
+              onHandleCancel={onHandleCancel}
+              onAfterClose={onAfterClose}
+            />
           </div>
-
         </div>
       </Content>
-      <Footer style={{textAlign:"center", height:"5vh", bottom:"0", width:"100%"}}>
-        porque eu programo {new Date().getFullYear()} Created by <a href="https://github.com/assebc" target="_blank">@assebc</a>  and  <a href="https://github.com/galleonpt" target="_blank">@galleonpt</a>.
-      </Footer>
+
+      <Footer />
     </Layout>
   );
-};
+}
 
 export default App;
