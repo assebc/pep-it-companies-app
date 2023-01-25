@@ -4,7 +4,7 @@ import FormItem from "antd/es/form/FormItem";
 import TextArea from "antd/es/input/TextArea";
 import { Empresa } from "../../config";
 
-interface ICraeteEditModal {
+interface ICreateEditModal {
   company?: Empresa;
   open: boolean;
   confirmLoading: boolean;
@@ -13,7 +13,7 @@ interface ICraeteEditModal {
   onAfterClose: () => void;
 }
 
-export const CreateEditModal: FC<ICraeteEditModal> = ({
+export const CreateEditModal: FC<ICreateEditModal> = ({
   company,
   open,
   onHandleOk,
