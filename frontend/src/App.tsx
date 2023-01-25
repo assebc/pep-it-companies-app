@@ -112,7 +112,10 @@ function App() {
               type="primary"
               size="large"
               onClick={() => showModal()}
-              style={{ marginBottom: "8px" }}
+              style={{ 
+                marginBottom: "8px",
+                width: "180px"
+              }}
             >
               Criar
             </Button>
@@ -120,7 +123,7 @@ function App() {
             <Table
               style={{ height: "30vh" }}
               columns={columns}
-              pagination={false}
+              pagination={false} 
               dataSource={companies}
             />
 
