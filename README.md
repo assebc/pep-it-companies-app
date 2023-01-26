@@ -13,7 +13,7 @@ npm install #install dependencies
 
 npm start #start the api
 ```
-(Note: needs to be in administrator mod)
+Note: needs to be in administrator mod
 
 # Requests collection
 
