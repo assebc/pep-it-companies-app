@@ -6,12 +6,12 @@ export const Footer: FC = () => {
     <Layout.Footer
       style={{
         textAlign: "center",
-        height: "5vh",
-        bottom: "0",
-        width: "100%",
+        height: "5%",
+        backgroundColor: "Background",
+        lineHeight: 0
       }}
     >
-      porque eu programo {new Date().getFullYear()} Created by{" "}
+      PorqueEuProgramo {new Date().getFullYear()} Created by{" "}
       <a href="https://github.com/assebc" target="_blank">
         @assebc
       </a>{" "}

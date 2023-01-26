@@ -28,17 +28,19 @@ function App() {
       title: "Nome",
       dataIndex: "name",
       key: "name",
+      width: "150px",
     },
     {
-      //FIXME: define max size per line
       title: "Informações",
       dataIndex: "reviews",
       key: "reviews",
+      width: "630px",
     },
     {
       title: "Website",
       dataIndex: "website_url",
       key: "website_url",
+      width: "250px",
       render: (text) => (
         <a href={text} target="_blank">
           {text}
@@ -49,10 +51,12 @@ function App() {
       title: "Votos",
       dataIndex: "votes",
       key: "votes",
+      width: "70px",
     },
     {
       title: "Ações",
       key: "actions",
+      width: "180px",
       render: (_, record) => {
         return (
           <Space size="middle">
@@ -88,10 +92,10 @@ function App() {
   }, []);
 
   return (
-    <Layout>
-      <Header />
+    <Layout style={{width: "1280px", minHeight:"100vh"}}>
+      <Header/>
 
-      <Content style={{ height: "84vh" }}>
+      <Content style={{ height: "84%" , backgroundColor: "Background"}}>
         <div
           style={{
             display: "flex",
@@ -112,15 +116,21 @@ function App() {
               type="primary"
               size="large"
               onClick={() => showModal()}
-              style={{ marginBottom: "8px" }}
+              style={{ 
+                marginBottom: "8px",
+                width: "100px",
+                backgroundColor: "#BD242A",
+                fontWeight: "bold"
+              }}
             >
               Criar
             </Button>
-            {/* FIXME:default size for table */}
+
             <Table
-              style={{ height: "30vh" }}
               columns={columns}
-              pagination={false}
+              pagination={false} 
+              bordered={true}
+              tableLayout={"fixed"}
               dataSource={companies}
             />
 
