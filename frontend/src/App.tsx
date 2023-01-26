@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./index.css";
 import { Space, Table, Layout, Button } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import axios from "axios";
 import { companiesData, Empresa } from "./config";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -10,6 +11,7 @@ import { CreateEditModal } from "./components/CreateEditModal";
 const { Content } = Layout;
 
 function App() {
+  const state = { newData: null };
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [companies, setCompanies] = useState<Empresa[]>();
@@ -90,6 +92,27 @@ function App() {
   const onAfterClose = useCallback(() => {
     setCompany(EMPTY_COMPANY);
   }, []);
+
+  const handleFile = (e:any)  => {
+    let newFiles = e.target.newfiles;
+    useState({ newFiles });
+  }
+
+  const handleUpload = (e:any) => {
+    let newData = state.newData;
+    let formData = undefined; // FIXME: this is done
+
+    axios({
+      url: "",
+      method: "PUT", // or POST idk :/ 
+      headers: {
+        authorization: undefined, // FIXME: insert token
+      },
+      data: formData,
+    }).then((res) => { }).catch((err) => { });
+    
+    // TODO: insert in action of button 
+  }
 
   return (
     <Layout style={{width: "1280px", minHeight:"100vh"}}>
