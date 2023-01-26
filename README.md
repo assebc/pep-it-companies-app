@@ -3,6 +3,7 @@
 A simple platform for @porqueeuprogramo to improve streams' dynamic!
 
 # How to run the api
+(Note: needs to be in administrator mod)
 
 ```sh
 cd api
