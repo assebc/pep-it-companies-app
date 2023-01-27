@@ -9,3 +9,8 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.layout{
+    width: 1280px;
+    min-height: 100vh;
+}
