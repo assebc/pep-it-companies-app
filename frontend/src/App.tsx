@@ -1,20 +1,25 @@
-
 import { Layout } from "antd";
 import { Header } from "./components/Header";
 import { Content } from "./components/Content";
 import { Footer } from "./components/Footer";
-import axios from "axios";
 import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <Layout className="layout">
+        <Header />
+        <Content />
+        <Footer />
+      </Layout>
+    ),
+  },
+]);
 
 function App() {
-
-  return (
-    <Layout className="layout">
-      <Header/>
-      <Content/>
-      <Footer/>
-    </Layout>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
