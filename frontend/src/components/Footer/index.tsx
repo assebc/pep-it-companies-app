@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Layout } from "antd";
-import "./index.css";
+import "./styles.css";
 
 export const Footer: FC = () => {
   return (

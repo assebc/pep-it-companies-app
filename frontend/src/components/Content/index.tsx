@@ -1,26 +1,19 @@
-import { FC , useCallback, useEffect, useState } from "react";
-import { Layout , Space, Button, Table } from "antd";
+import { FC, useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Layout, Space, Button, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { CreateEditModal } from "../CreateEditModal";
-import { companiesData, Empresa } from "../../config";
-import "./index.css";
+import { ICompany } from "../../config";
+import api from "../../services/api";
+import "./styles.css";
 
 export const Content: FC = () => {
-
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [companies, setCompanies] = useState<Empresa[]>();
-  const [company, setCompany] = useState<Empresa>();
+  const [companies, setCompanies] = useState<ICompany[]>();
+  const [company, setCompany] = useState<ICompany | undefined>();
 
-  const EMPTY_COMPANY: Empresa = {
-    key: "",
-    name: "",
-    reviews: "",
-    votes: 0,
-    website_url: "",
-  };
-
-  const columns: ColumnsType<Empresa> = [
+  const columns: ColumnsType<ICompany> = [
     {
       title: "Nome",
       dataIndex: "name",
@@ -38,10 +31,10 @@ export const Content: FC = () => {
       dataIndex: "website_url",
       key: "website_url",
       width: "250px",
-      render: (text) => (
-        <a href={text} target="_blank">
-          {text}
-        </a>
+      render: (url) => (
+        <Link to={url} target="_blank">
+          {url}
+        </Link>
       ),
     },
     {
@@ -66,16 +59,17 @@ export const Content: FC = () => {
   ];
 
   useEffect(() => {
-    setCompanies(companiesData);
+    api.get("companies").then((response) => {
+      setCompanies(response.data);
+    });
   }, []);
 
-  const showModal = (record?: Empresa) => {
+  const showModal = (record?: ICompany) => {
     if (record) setCompany(record);
     setOpen(true);
   };
 
   const onHandleOk = useCallback(() => {
-    console.log("on ok");
     setConfirmLoading(false);
     setOpen(false);
   }, []);
@@ -85,14 +79,15 @@ export const Content: FC = () => {
   }, []);
 
   const onAfterClose = useCallback(() => {
-    setCompany(EMPTY_COMPANY);
+    setCompany(undefined);
   }, []);
 
   return (
     <Layout.Content className="content">
       <div className="align">
         <div className="components">
-          <Button className="button"
+          <Button
+            className="button"
             type="primary"
             size="large"
             onClick={() => showModal()}
@@ -102,14 +97,15 @@ export const Content: FC = () => {
 
           <Table
             columns={columns}
-            pagination={false} 
+            pagination={false}
             bordered={true}
             tableLayout={"fixed"}
             dataSource={companies}
+            rowKey="id"
           />
 
           <CreateEditModal
-            company={company}
+            company={company ?? undefined}
             open={open}
             confirmLoading={confirmLoading}
             onHandleOk={onHandleOk}

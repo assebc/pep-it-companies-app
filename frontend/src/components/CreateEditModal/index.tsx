@@ -1,16 +1,16 @@
 import { FC } from "react";
-import { Space, Table, Layout, Button, Modal, Form, Input } from "antd";
+import { Modal, Form, Input } from "antd";
 import FormItem from "antd/es/form/FormItem";
 import TextArea from "antd/es/input/TextArea";
-import { Empresa } from "../../config";
+import { ICompany } from "../../config";
 
 interface ICreateEditModal {
-  company?: Empresa;
+  company?: ICompany;
   open: boolean;
   confirmLoading: boolean;
   onHandleOk: () => void;
   onHandleCancel: () => void;
-  onAfterClose: () => void;
+  onAfterClose?: () => void;
 }
 
 export const CreateEditModal: FC<ICreateEditModal> = ({
@@ -24,7 +24,7 @@ export const CreateEditModal: FC<ICreateEditModal> = ({
   return (
     <Modal
       destroyOnClose
-      title={company ? "Editar empresa" : "Adicionar empresa"}
+      title={company?.id ? "Editar empresa" : "Adicionar empresa"}
       open={open}
       onOk={onHandleOk}
       confirmLoading={confirmLoading}
@@ -50,7 +50,7 @@ export const CreateEditModal: FC<ICreateEditModal> = ({
         <FormItem label={"URL"}>
           <Input
             placeholder="e.g. https://empresa.com"
-            type="url"
+            type="text"
             defaultValue={company?.website_url ?? ""}
           />
         </FormItem>
