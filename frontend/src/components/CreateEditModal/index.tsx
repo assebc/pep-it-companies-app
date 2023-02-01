@@ -1,59 +1,116 @@
-import { FC } from "react";
-import { Modal, Form, Input } from "antd";
-import FormItem from "antd/es/form/FormItem";
+import { FC, useEffect } from "react";
+import { Modal, Form, Input, Button, Space } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import { ICompany } from "../../config";
+import { ICompany, ICreateCompanyData } from "../../config";
+import "./styles.css";
+import api from "../../services/api";
+import { AxiosError } from "axios";
 
-interface ICreateEditModal {
+interface ICreateEditModalProps {
   company?: ICompany;
+  isEditing: boolean;
   open: boolean;
   confirmLoading: boolean;
-  onHandleOk: () => void;
-  onHandleCancel: () => void;
+  onHandleClose: () => void;
   onAfterClose?: () => void;
 }
 
-export const CreateEditModal: FC<ICreateEditModal> = ({
+export const CreateEditModal: FC<ICreateEditModalProps> = ({
   company,
+  isEditing,
   open,
-  onHandleOk,
   confirmLoading,
-  onHandleCancel,
+  onHandleClose,
   onAfterClose,
 }) => {
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    if (isEditing) {
+      form.setFieldsValue({ ...company });
+    } else {
+      form.resetFields();
+    }
+  });
+
+  const createCompany = async (data: ICreateCompanyData) => {
+    try {
+      const response = await api.post("companies", data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      if (response.status === 201) {
+        alert("Empresa criada com sucesso");
+        onHandleClose();
+      }
+    } catch (err: any) {
+      alert(err.response.data.error);
+    }
+  };
+
+  const updateCompany = () => {
+    console.log("update");
+  };
+
+  const handleSubmit = (data: ICreateCompanyData) => {
+    isEditing ? updateCompany() : createCompany(data);
+  };
+
+  const onFormValuesChange = () => {};
+
   return (
     <Modal
+      forceRender
       destroyOnClose
-      title={company?.id ? "Editar empresa" : "Adicionar empresa"}
+      title={isEditing ? "Editar empresa" : "Adicionar empresa"}
       open={open}
-      onOk={onHandleOk}
       confirmLoading={confirmLoading}
-      onCancel={onHandleCancel}
       afterClose={onAfterClose}
+      footer={null}
     >
-      <Form layout="vertical">
-        <FormItem label={"Nome"}>
-          <Input
-            placeholder="Nome de empresa"
-            defaultValue={company?.name ?? ""}
-          />
-        </FormItem>
+      <Form
+        layout="vertical"
+        form={form}
+        onFinish={handleSubmit}
+        onValuesChange={onFormValuesChange}
+      >
+        <Form.Item
+          label="Nome"
+          name="name"
+          initialValue={""}
+          rules={[{ required: true, message: "Campo obrigatório" }]}
+        >
+          <Input placeholder="Nome da empresa" />
+        </Form.Item>
 
-        <FormItem label={"Informações"}>
-          <TextArea
-            placeholder="Informações sobre empresa"
-            autoSize={{ minRows: 3, maxRows: 5 }}
-            defaultValue={company?.reviews ?? ""}
-          />
-        </FormItem>
+        <Form.Item
+          label="Informações"
+          name="reviews"
+          initialValue={""}
+          rules={[{ required: true, message: "Campo obrigatório" }]}
+        >
+          <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
+        </Form.Item>
 
-        <FormItem label={"URL"}>
-          <Input
-            placeholder="e.g. https://empresa.com"
-            type="text"
-            defaultValue={company?.website_url ?? ""}
-          />
-        </FormItem>
+        <Form.Item
+          label="Website URL"
+          name="website_url"
+          initialValue={""}
+          rules={[{ required: true, message: "Campo obrigatório" }]}
+        >
+          <Input placeholder="e.g. https://empresa.com" type="text" />
+        </Form.Item>
+
+        <Space className="action_btns_container">
+          <Button type="default" onClick={onHandleClose}>
+            Cancelar
+          </Button>
+          <Button type="primary" htmlType="submit">
+            Ok
+          </Button>
+        </Space>
       </Form>
     </Modal>
   );
