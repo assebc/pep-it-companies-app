@@ -7,3 +7,9 @@ export interface ICompany {
   created_by_id: number;
   deleted: boolean;
 }
+
+export interface ICreateCompanyData {
+  name: string;
+  website_url: string;
+  reviews: string;
+}

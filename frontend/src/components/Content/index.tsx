@@ -12,6 +12,8 @@ export const Content: FC = () => {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [companies, setCompanies] = useState<ICompany[]>();
   const [company, setCompany] = useState<ICompany | undefined>();
+  const [isEditingCompany, setIsEditingCompany] = useState<boolean>(false);
+  const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
   const columns: ColumnsType<ICompany> = [
     {
@@ -58,42 +60,48 @@ export const Content: FC = () => {
     },
   ];
 
-  useEffect(() => {
+  const getCompanies = () => {
     api.get("companies").then((response) => {
       setCompanies(response.data);
     });
+  };
+
+  useEffect(() => {
+    getCompanies();
   }, []);
 
   const showModal = (record?: ICompany) => {
-    if (record) setCompany(record);
+    if (record) {
+      setCompany(record);
+      setIsEditingCompany(true);
+    }
     setOpen(true);
   };
 
-  const onHandleOk = useCallback(() => {
-    setConfirmLoading(false);
+  const onHandleClose = useCallback(() => {
     setOpen(false);
-  }, []);
-
-  const onHandleCancel = useCallback(() => {
-    setOpen(false);
+    getCompanies();
   }, []);
 
   const onAfterClose = useCallback(() => {
     setCompany(undefined);
+    setIsEditingCompany(false);
   }, []);
 
   return (
     <Layout.Content className="content">
       <div className="align">
         <div className="components">
-          <Button
-            className="button"
-            type="primary"
-            size="large"
-            onClick={() => showModal()}
-          >
-            Criar
-          </Button>
+          {isAdmin && (
+            <Button
+              className="button"
+              type="primary"
+              size="large"
+              onClick={() => showModal()}
+            >
+              Criar
+            </Button>
+          )}
 
           <Table
             columns={columns}
@@ -105,11 +113,11 @@ export const Content: FC = () => {
           />
 
           <CreateEditModal
-            company={company ?? undefined}
+            company={company}
+            isEditing={isEditingCompany}
             open={open}
             confirmLoading={confirmLoading}
-            onHandleOk={onHandleOk}
-            onHandleCancel={onHandleCancel}
+            onHandleClose={onHandleClose}
             onAfterClose={onAfterClose}
           />
         </div>

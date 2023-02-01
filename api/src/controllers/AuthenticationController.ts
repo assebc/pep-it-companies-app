@@ -8,7 +8,6 @@ class AuthenticationController {
   async login(request: Request, response: Response) {
     const { email, password } = request.body;
 
-    console.log("email", email, password);
     if (!email || !password)
       return response.status(400).json({ error: "Invalid data!" });
 

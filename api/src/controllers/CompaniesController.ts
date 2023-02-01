@@ -7,7 +7,9 @@ class CompaniesController {
     const { name, website_url, reviews } = request.body;
 
     if (!name || !website_url || !reviews) {
-      return response.status(400).json({ error: "Invalid data!" });
+      return response
+        .status(400)
+        .json({ error: "Todos os campos são obrigatórios!" });
     }
 
     //buscar o id do user pelo jwt
@@ -69,7 +71,9 @@ class CompaniesController {
     if (!company) return response.status(400).end();
 
     if (!name || !website_url || !reviews || !votes)
-      return response.status(400).json({ error: "Invalid data!" });
+      return response
+        .status(400)
+        .json({ error: "Todos os campos são obrigatórios!" });
 
     const updatedCompany: Company = await prisma.company.update({
       where: { id: +id },
