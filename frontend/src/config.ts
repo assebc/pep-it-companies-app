@@ -8,8 +8,10 @@ export interface ICompany {
   deleted: boolean;
 }
 
-export interface ICreateCompanyData {
+export interface ICreateUpdateCompanyData {
+  id: number;
   name: string;
   website_url: string;
   reviews: string;
+  votes?: number;
 }

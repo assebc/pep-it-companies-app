@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
-import { Modal, Form, Input, Button, Space } from "antd";
+import { Modal, Form, Input, Button, Space, InputNumber } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import { ICompany, ICreateCompanyData } from "../../config";
+import { ICompany, ICreateUpdateCompanyData } from "../../config";
 import "./styles.css";
 import api from "../../services/api";
 import { AxiosError } from "axios";
@@ -33,7 +33,7 @@ export const CreateEditModal: FC<ICreateEditModalProps> = ({
     }
   });
 
-  const createCompany = async (data: ICreateCompanyData) => {
+  const createCompany = async (data: ICreateUpdateCompanyData) => {
     try {
       const response = await api.post("companies", data, {
         headers: {
@@ -50,12 +50,25 @@ export const CreateEditModal: FC<ICreateEditModalProps> = ({
     }
   };
 
-  const updateCompany = () => {
-    console.log("update");
+  const updateCompany = async (data: ICreateUpdateCompanyData) => {
+    try {
+      const response = await api.put(`companies/${company?.id}`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      if (response.status === 200) {
+        alert("Empresa atualizada com sucesso com sucesso");
+        onHandleClose();
+      }
+    } catch (err: any) {
+      alert(err.response.data.error);
+    }
   };
 
-  const handleSubmit = (data: ICreateCompanyData) => {
-    isEditing ? updateCompany() : createCompany(data);
+  const handleSubmit = (data: ICreateUpdateCompanyData) => {
+    isEditing ? updateCompany(data) : createCompany(data);
   };
 
   const onFormValuesChange = () => {};
@@ -102,6 +115,20 @@ export const CreateEditModal: FC<ICreateEditModalProps> = ({
         >
           <Input placeholder="e.g. https://empresa.com" type="text" />
         </Form.Item>
+
+        {isEditing && (
+          <Form.Item
+            label="Votos"
+            name="votes"
+            initialValue={0}
+            rules={[
+              { type: "number" },
+              { required: true, message: "Campo obrigatório" },
+            ]}
+          >
+            <InputNumber min={0} />
+          </Form.Item>
+        )}
 
         <Space className="action_btns_container">
           <Button type="default" onClick={onHandleClose}>
