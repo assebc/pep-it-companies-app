@@ -80,6 +80,7 @@ export const CreateEditModal: FC<ICreateEditModalProps> = ({
       title={isEditing ? "Editar empresa" : "Adicionar empresa"}
       open={open}
       confirmLoading={confirmLoading}
+      onCancel={onHandleClose}
       afterClose={onAfterClose}
       footer={null}
     >
