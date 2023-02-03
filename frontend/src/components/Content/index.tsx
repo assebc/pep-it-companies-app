@@ -52,7 +52,7 @@ export const Content: FC = () => {
       render: (_, record) => {
         return (
           <Space size="middle">
-            <Button>Votar</Button>
+            <Button onClick={() => handleVote(record)}>Votar</Button>
             <Button onClick={() => showModal(record)}>Editar</Button>
           </Space>
         );
@@ -87,6 +87,21 @@ export const Content: FC = () => {
     setCompany(undefined);
     setIsEditingCompany(false);
   }, []);
+
+  const handleVote = async (record: ICompany) => {
+    try {
+      const response = await api.patch(`companies/${record.id}/vote`, null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (response.status === 200) {
+        getCompanies();
+      }
+    } catch (err: any) {
+      alert(err.response.data.error);
+    }
+  };
 
   return (
     <Layout.Content className="content">
