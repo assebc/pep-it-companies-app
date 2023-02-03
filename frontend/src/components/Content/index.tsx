@@ -15,7 +15,7 @@ export const Content: FC = () => {
   const [isEditingCompany, setIsEditingCompany] = useState<boolean>(false);
   const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
-  const columns: ColumnsType<ICompany> = [
+  const DEFAULT_COLUMNS: ColumnsType<ICompany> = [
     {
       title: "Nome",
       dataIndex: "name",
@@ -45,6 +45,10 @@ export const Content: FC = () => {
       key: "votes",
       width: "70px",
     },
+  ];
+
+  const ADMIN_COLUMNS: ColumnsType<ICompany> = [
+    ...DEFAULT_COLUMNS,
     {
       title: "Ações",
       key: "actions",
@@ -119,7 +123,9 @@ export const Content: FC = () => {
           )}
 
           <Table
-            columns={columns}
+            columns={
+              localStorage.getItem("token") ? ADMIN_COLUMNS : DEFAULT_COLUMNS
+            }
             pagination={false}
             bordered={true}
             tableLayout={"fixed"}
