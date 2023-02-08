@@ -20,7 +20,7 @@ class CompaniesController {
         website_url,
         reviews,
         votes: 0,
-        created_by_id: 2,
+        created_by_id: 1,
       },
     });
 

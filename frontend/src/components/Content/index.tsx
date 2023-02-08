@@ -26,7 +26,7 @@ export const Content: FC = () => {
       title: "Informações",
       dataIndex: "reviews",
       key: "reviews",
-      width: "630px",
+      width: localStorage.getItem("token") ? "630px" : "810px",
     },
     {
       title: "Website",
