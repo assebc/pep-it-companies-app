@@ -2,3 +2,7 @@
   display: flex;
   justify-content: end;
 }
+
+.updatecompaniesform{
+  height: 84vh;
+}

@@ -6,7 +6,7 @@ import { ICompany } from "../../config";
 import api from "../../services/api";
 import "./styles.css";
 
-export const Content: FC = () => {
+export const CompaniesList: FC = () => {
   const [companies, setCompanies] = useState<ICompany[]>();
   const navigate = useNavigate();
   const isAdmin: boolean = localStorage.getItem("token") ? true : false;

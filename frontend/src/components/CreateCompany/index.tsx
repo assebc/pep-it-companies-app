@@ -58,7 +58,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
               initialValue={""}
               rules={[{ required: true, message: "Campo obrigatório" }]}
             >
-              <Input placeholder="Nome da empresa" />
+              <Input placeholder="Nome da empresa" autoComplete="off"/>
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -68,7 +68,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
               initialValue={""}
               rules={[{ required: true, message: "Campo obrigatório" }]}
             >
-              <Input placeholder="e.g. https://empresa.com" type="text" />
+              <Input placeholder="e.g. https://empresa.com" type="text" autoComplete="off"/>
             </Form.Item>
           </Col>
         </Row>
@@ -79,7 +79,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
           initialValue={""}
           rules={[{ required: true, message: "Campo obrigatório" }]}
         >
-          <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
+          <TextArea placeholder="Informações sobre a empresa" autoSize={true} autoComplete="off"/>
         </Form.Item>
 
         <Space className="action_btns_container">

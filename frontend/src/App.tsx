@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 import { Header } from "./components/Header";
-import { Content } from "./components/Content";
+import { CompaniesList } from "./components/CompaniesList";
 import { Footer } from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CreateCompany } from "./components/CreateCompany";
@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={
-              <Content />
+              <CompaniesList />
           } />
           <Route path="companies/new" element={<CreateCompany />}/>
           <Route path="companies/:id" element={<UpdateCompany />}/>
