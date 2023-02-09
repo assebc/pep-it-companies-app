@@ -5,4 +5,16 @@
 
 .newcompaniesform{
   height: 84vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 12%;
+}
+
+.newcompaniesform h1{
+  width: 80%;
+  text-align: left;
+}
+.newcompaniesinputs{
+  width: 80%;
 }

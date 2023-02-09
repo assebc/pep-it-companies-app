@@ -71,6 +71,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
         form={form}
         onFinish={handleSubmit}
         onValuesChange={onFormValuesChange}
+        className={"updatecompaniesinputs"}
       >
         <Row gutter={10}>
           <Col span={11}>
@@ -99,9 +100,12 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
                 label="Votos"
                 name="votes"
                 initialValue={0}
-                rules={[{ required: true, message: "Campo obrigatório" }]}
+                rules={[
+                  { type: "number" },
+                  { required: true, message: "Campo obrigatório" }
+                ]}
               >
-                <InputNumber type="number" min={0} autoComplete="off" />
+                <InputNumber className="inputvotes" min={0} autoComplete="off" />
               </Form.Item>
             )}
           </Col>

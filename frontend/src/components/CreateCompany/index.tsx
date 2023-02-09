@@ -49,6 +49,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
         form={form}
         onFinish={handleSubmit}
         onValuesChange={onFormValuesChange}
+        className={"newcompaniesinputs"}
       >
         <Row gutter={10}>
           <Col span={12}>
