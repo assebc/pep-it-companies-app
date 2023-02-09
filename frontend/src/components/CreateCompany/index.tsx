@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useState } from "react";
-import { Form, Input, Button, Space } from "antd";
+import { Form, Input, Button, Space, Row, Col } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { ICompany, ICreateUpdateCompanyData } from "../../config";
 import "./styles.css";
@@ -10,9 +10,7 @@ interface ICreateCompanyProps {
   company?: ICompany;
 }
 
-export const CreateCompany: FC<ICreateCompanyProps> = ({
-
-}) => {
+export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
@@ -42,18 +40,18 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({
   };
 
   const onFormValuesChange = () => {};
-  
-  return (
 
-      <div className="newcompaniesform">
-        <h1>{"Adicionar empresa"}</h1>
-        <Form
-          layout="vertical"
-          form={form}
-          onFinish={handleSubmit}
-          onValuesChange={onFormValuesChange}
-        >
-          <Space direction="horizontal" split>
+  return (
+    <div className="newcompaniesform">
+      <h1>{"Adicionar empresa"}</h1>
+      <Form
+        layout="vertical"
+        form={form}
+        onFinish={handleSubmit}
+        onValuesChange={onFormValuesChange}
+      >
+        <Row gutter={10}>
+          <Col span={12}>
             <Form.Item
               label="Nome"
               name="name"
@@ -62,37 +60,37 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({
             >
               <Input placeholder="Nome da empresa" />
             </Form.Item>
-
+          </Col>
+          <Col span={12}>
             <Form.Item
               label="Website URL"
               name="website_url"
               initialValue={""}
               rules={[{ required: true, message: "Campo obrigatório" }]}
             >
-            <Input placeholder="e.g. https://empresa.com" type="text" />
-          </Form.Item>
-          </Space>
-          
+              <Input placeholder="e.g. https://empresa.com" type="text" />
+            </Form.Item>
+          </Col>
+        </Row>
 
-          <Form.Item
-            label="Informações"
-            name="reviews"
-            initialValue={""}
-            rules={[{ required: true, message: "Campo obrigatório" }]}
-          >
-            <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
-          </Form.Item>
+        <Form.Item
+          label="Informações"
+          name="reviews"
+          initialValue={""}
+          rules={[{ required: true, message: "Campo obrigatório" }]}
+        >
+          <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
+        </Form.Item>
 
-          <Space className="action_btns_container">
-            <Button type="default" onClick={() => navigate("/")}>
-              Cancelar
-            </Button>
-            <Button type="primary" htmlType="submit">
-              Ok
-            </Button>
-          </Space>
-        </Form>
-      </div>
-
+        <Space className="action_btns_container">
+          <Button type="default" onClick={() => navigate("/")}>
+            Cancelar
+          </Button>
+          <Button type="primary" htmlType="submit">
+            Ok
+          </Button>
+        </Space>
+      </Form>
+    </div>
   );
 };
