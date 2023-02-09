@@ -3,7 +3,7 @@ import { Form, Input, Button, Space, InputNumber, Row, Col } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { ICompany, ICreateUpdateCompanyData } from "../../config";
 import api from "../../services/api";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
 
 interface IUpdateCompanyProps {
@@ -15,20 +15,29 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
 }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const location = useLocation();
   const [companies, setCompanies] = useState<ICompany[]>();
   const [company, setCompany] = useState<ICompany | undefined>();
   const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
   const getCompanies = () => {
     api.get("companies").then((response) => {
-      setCompanies(response.data);  
+      setCompanies(response.data); 
     });
+  };
+
+  const getCompany = (id: number) => {
+    setCompany(companies?.find(company => company.id === id));
   };
 
   useEffect(() => {
     getCompanies();
-    form.setFieldsValue({ ...company });
-  });
+  }, []);
+
+  useEffect( () => {
+    getCompany(Number(location.pathname.split("/").at(2)));
+    form.setFieldsValue( {...company} );
+  }, [companies,company]);
 
   const updateCompany = async (data: ICreateUpdateCompanyData) => {
     try {
@@ -54,7 +63,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
   const onFormValuesChange = () => {};
 
   return (
-
+    
     <div className="updatecompaniesform">
       <h1>{"Editar empresa"}</h1>
       <Form
@@ -64,7 +73,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
         onValuesChange={onFormValuesChange}
       >
         <Row gutter={10}>
-          <Col span={10}>
+          <Col span={11}>
             <Form.Item
               label="Nome"
               name="name"
@@ -74,30 +83,27 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
               <Input placeholder="Nome da empresa" autoComplete="off" />
             </Form.Item>
           </Col>
-          <Col span={10}>
+          <Col span={11}>
             <Form.Item
               label="Website URL"
               name="website_url"
               initialValue={""}
               rules={[{ required: true, message: "Campo obrigatório" }]}
             >
-              <Input placeholder="e.g. https://empresa.com" type="text" autoComplete="off"/>
+              <Input placeholder="e.g. https://empresa.com" type="text" autoComplete="off" />
             </Form.Item>
           </Col>
-          <Col span={4}>
+          <Col span={2}>
             {(
-                <Form.Item
-                  label="Votos"
-                  name="votes"
-                  initialValue={0}
-                  rules={[
-                    { type: "number" },
-                    { required: true, message: "Campo obrigatório" },
-                  ]}
-                >
-                  <InputNumber min={0} autoComplete="off"/>
-                </Form.Item>
-              )}
+              <Form.Item
+                label="Votos"
+                name="votes"
+                initialValue={0}
+                rules={[{ required: true, message: "Campo obrigatório" }]}
+              >
+                <InputNumber type="number" min={0} autoComplete="off" />
+              </Form.Item>
+            )}
           </Col>
         </Row>
 
@@ -107,7 +113,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
           initialValue={""}
           rules={[{ required: true, message: "Campo obrigatório" }]}
         >
-          <TextArea placeholder="Informações sobre a empresa" autoSize={true} autoComplete="off"/>
+          <TextArea placeholder="Informações sobre a empresa" autoSize={true} autoComplete="off" />
         </Form.Item>
 
 
