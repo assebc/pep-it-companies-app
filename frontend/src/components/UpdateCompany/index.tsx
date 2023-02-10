@@ -1,11 +1,10 @@
 import { FC, useEffect, useState } from "react";
 import { Form, Input, Button, Space, InputNumber, Row, Col } from "antd";
 import { ICompany, ICreateUpdateCompanyData } from "../../config";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
-import { stringify } from "rc-field-form/es/useWatch";
 
 interface IUpdateCompanyProps {
   company?: ICompany
@@ -16,13 +15,13 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
 }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const companyID = useParams();
+  const {id} = useParams();
   const [company, setCompany] = useState<ICompany | undefined>();
   const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
   const getCompany = async () => {
     try{
-      const response = await api.get(`companies/${companyID.id}`, {
+      const response = await api.get(`companies/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
