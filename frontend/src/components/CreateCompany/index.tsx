@@ -1,13 +1,12 @@
 import { FC, useEffect } from "react";
 import { Form, Input, Button, Space, Row, Col } from "antd";
-import TextArea from "antd/es/input/TextArea";
-import { ICompany, ICreateUpdateCompanyData } from "../../config";
-import "./styles.css";
-import api from "../../services/api";
+import { ICreateUpdateCompanyData } from "../../config";
 import { useNavigate } from "react-router-dom";
+import TextArea from "antd/es/input/TextArea";
+import api from "../../services/api";
+import "./styles.css";
 
 interface ICreateCompanyProps {
-  company?: ICompany;
 }
 
 export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
@@ -39,8 +38,6 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
     navigate("/");
   };
 
-  const onFormValuesChange = () => {};
-
   return (
     <div className="newcompaniesform">
       <h1>{"Adicionar empresa"}</h1>
@@ -48,7 +45,6 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
         layout="vertical"
         form={form}
         onFinish={handleSubmit}
-        onValuesChange={onFormValuesChange}
         className={"newcompaniesinputs"}
       >
         <Row gutter={10}>

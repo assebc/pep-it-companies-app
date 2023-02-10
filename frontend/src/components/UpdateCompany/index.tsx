@@ -1,13 +1,14 @@
 import { FC, useEffect, useState } from "react";
 import { Form, Input, Button, Space, InputNumber, Row, Col } from "antd";
-import TextArea from "antd/es/input/TextArea";
 import { ICompany, ICreateUpdateCompanyData } from "../../config";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
-import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
+import { stringify } from "rc-field-form/es/useWatch";
 
 interface IUpdateCompanyProps {
-  company?: ICompany;
+  company?: ICompany
 }
 
 export const UpdateCompany: FC<IUpdateCompanyProps> = ({
@@ -15,29 +16,31 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
 }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const location = useLocation();
-  const [companies, setCompanies] = useState<ICompany[]>();
+  const companyID = useParams();
   const [company, setCompany] = useState<ICompany | undefined>();
   const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
-  const getCompanies = () => {
-    api.get("companies").then((response) => {
-      setCompanies(response.data); 
-    });
-  };
+  const getCompany = async () => {
+    try{
+      const response = await api.get(`companies/${companyID.id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
-  const getCompany = (id: number) => {
-    setCompany(companies?.find(company => company.id === id));
-  };
+      if (response.status === 200){
+        setCompany(response.data);
+      }
 
-  useEffect(() => {
-    getCompanies();
-  }, []);
+    } catch (err: any){
+      alert(err.response.data.error);
+    }
+  };
 
   useEffect( () => {
-    getCompany(Number(location.pathname.split("/").at(2)));
+    if(!company) getCompany();
     form.setFieldsValue( {...company} );
-  }, [companies,company]);
+  }, [company]);
 
   const updateCompany = async (data: ICreateUpdateCompanyData) => {
     try {
@@ -60,8 +63,6 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
     navigate("/");
   };
 
-  const onFormValuesChange = () => {};
-
   return (
     
     <div className="updatecompaniesform">
@@ -70,7 +71,6 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
         layout="vertical"
         form={form}
         onFinish={handleSubmit}
-        onValuesChange={onFormValuesChange}
         className={"updatecompaniesinputs"}
       >
         <Row gutter={10}>
