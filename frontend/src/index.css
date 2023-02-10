@@ -1,16 +1,17 @@
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.layout{
-    width: 1280px;
-    min-height: 100vh;
+.layout {
+  width: 1280px;
+  min-height: 100vh;
+  background-color: #FFFFFF !important;
 }

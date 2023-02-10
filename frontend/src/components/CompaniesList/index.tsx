@@ -1,18 +1,14 @@
-import { FC, useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { FC, useEffect, useState } from "react";
+import { Link , useNavigate } from "react-router-dom";
 import { Layout, Space, Button, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { CreateEditModal } from "../CreateEditModal";
 import { ICompany } from "../../config";
 import api from "../../services/api";
 import "./styles.css";
 
-export const Content: FC = () => {
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+export const CompaniesList: FC = () => {
   const [companies, setCompanies] = useState<ICompany[]>();
-  const [company, setCompany] = useState<ICompany | undefined>();
-  const [isEditingCompany, setIsEditingCompany] = useState<boolean>(false);
+  const navigate = useNavigate();
   const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
   const DEFAULT_COLUMNS: ColumnsType<ICompany> = [
@@ -57,7 +53,7 @@ export const Content: FC = () => {
         return (
           <Space size="middle">
             <Button onClick={() => handleVote(record)}>Votar</Button>
-            <Button onClick={() => showModal(record)}>Editar</Button>
+            <Button onClick={() => navigate(`/companies/${record.id}`)}>Editar</Button>
           </Space>
         );
       },
@@ -73,25 +69,7 @@ export const Content: FC = () => {
   useEffect(() => {
     getCompanies();
   }, []);
-
-  const showModal = (record?: ICompany) => {
-    if (record) {
-      setCompany(record);
-      setIsEditingCompany(true);
-    }
-    setOpen(true);
-  };
-
-  const onHandleClose = useCallback(() => {
-    setOpen(false);
-    getCompanies();
-  }, []);
-
-  const onAfterClose = useCallback(() => {
-    setCompany(undefined);
-    setIsEditingCompany(false);
-  }, []);
-
+  
   const handleVote = async (record: ICompany) => {
     try {
       const response = await api.patch(`companies/${record.id}/vote`, null, {
@@ -116,7 +94,7 @@ export const Content: FC = () => {
               className="button"
               type="primary"
               size="large"
-              onClick={() => showModal()}
+              onClick={() => navigate("/companies/new")}
             >
               Criar
             </Button>
@@ -131,16 +109,8 @@ export const Content: FC = () => {
             tableLayout={"fixed"}
             dataSource={companies}
             rowKey="id"
-          />
+          ></Table>
 
-          <CreateEditModal
-            company={company}
-            isEditing={isEditingCompany}
-            open={open}
-            confirmLoading={confirmLoading}
-            onHandleClose={onHandleClose}
-            onAfterClose={onAfterClose}
-          />
         </div>
       </div>
     </Layout.Content>

@@ -1,0 +1,25 @@
+.action_btns_container {
+  display: flex;
+  justify-content: end;
+}
+
+.updatecompaniesform{
+  height: 84vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 12%;
+}
+
+.updatecompaniesform h1{
+  width: 80%;
+  text-align: left;
+}
+
+.updatecompaniesinputs{
+  width: 80%;
+}
+
+.inputvotes{
+  width: 100%;
+}
