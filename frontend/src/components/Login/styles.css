@@ -1,0 +1,49 @@
+.login{
+    height: 84vh;
+    background-color: #FFFFFF !important;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 12%;
+}
+
+.login h1{
+    width: 20%;
+    text-align: left;
+}
+
+.logininputs{
+    width: 20%;
+}
+
+.logininputs .button{
+    background-color: #BD242A;
+    font-weight: bold;
+}
+
+.logininputs .button:hover{
+    background-color: #FFFFFF;
+    font-weight: bold;
+    color: #BD242A;
+    border-color: #BD242A;
+}
+
+.logininputs .invbutton{
+    font-weight: bold;
+}
+
+.logininputs .invbutton:hover{
+    border-color: #BD242A;
+    font-weight: bold;
+    color:#BD242A;
+}
+
+.forgotpwd{
+    color: black !important;
+}
+
+.forgotpwd:hover{
+    color:#BD242A !important;
+    text-decoration: underline;
+
+}
