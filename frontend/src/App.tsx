@@ -1,10 +1,11 @@
 import { Layout } from "antd";
-import { Header } from "./components/Header";
-import { CompaniesList } from "./components/CompaniesList";
-import { Footer } from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { CompaniesList } from "./components/CompaniesList";
 import { CreateCompany } from "./components/CreateCompany";
 import { UpdateCompany } from "./components/UpdateCompany";
+import { Login } from "./components/Login";
 import "./index.css";
 
 function App() {
@@ -14,11 +15,10 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={
-              <CompaniesList />
-          } />
-          <Route path="companies/new" element={<CreateCompany />}/>
-          <Route path="companies/:id" element={<UpdateCompany />}/>
+          <Route path="/"             element={<Login />} />
+          <Route path="/companies"    element={<CompaniesList />} />
+          <Route path="companies/new" element={<CreateCompany />} />
+          <Route path="companies/:id" element={<UpdateCompany />} />
         </Routes>
       </BrowserRouter>
       <Footer />

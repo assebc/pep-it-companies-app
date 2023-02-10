@@ -24,3 +24,21 @@
     font-weight: bold;
 }
 
+.components .button:hover{
+    margin-bottom: 8px;
+    width: 100px;
+    background-color: #FFFFFF;
+    font-weight: bold;
+    color: #BD242A;
+    border-color: #BD242A;
+}
+
+.invbutton{
+    font-weight: bold;
+}
+
+.invbutton:hover{
+    border-color: #BD242A !important;
+    font-weight: bold;
+    color:#BD242A !important;
+}

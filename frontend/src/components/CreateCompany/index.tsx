@@ -35,7 +35,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
 
   const handleSubmit = async (data: ICreateUpdateCompanyData) => {
     await createCompany(data);
-    navigate("/");
+    navigate("/companies");
   };
 
   return (
@@ -46,6 +46,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
         form={form}
         onFinish={handleSubmit}
         className={"newcompaniesinputs"}
+        autoComplete="off"
       >
         <Row gutter={10}>
           <Col span={12}>
@@ -55,7 +56,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
               initialValue={""}
               rules={[{ required: true, message: "Campo obrigatório" }]}
             >
-              <Input placeholder="Nome da empresa" autoComplete="off"/>
+              <Input placeholder="Nome da empresa" />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -65,7 +66,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
               initialValue={""}
               rules={[{ required: true, message: "Campo obrigatório" }]}
             >
-              <Input placeholder="e.g. https://empresa.com" type="text" autoComplete="off"/>
+              <Input placeholder="e.g. https://empresa.com" type="text" />
             </Form.Item>
           </Col>
         </Row>
@@ -76,14 +77,14 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
           initialValue={""}
           rules={[{ required: true, message: "Campo obrigatório" }]}
         >
-          <TextArea placeholder="Informações sobre a empresa" autoSize={true} autoComplete="off"/>
+          <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
         </Form.Item>
 
         <Space className="action_btns_container">
-          <Button type="default" onClick={() => navigate("/")}>
+          <Button type="default" className="invbutton" onClick={() => navigate("/companies")}>
             Cancelar
           </Button>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" className="button" htmlType="submit">
             Ok
           </Button>
         </Space>

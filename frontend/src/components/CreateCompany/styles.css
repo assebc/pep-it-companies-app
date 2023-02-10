@@ -15,6 +15,29 @@
   width: 80%;
   text-align: left;
 }
+
 .newcompaniesinputs{
   width: 80%;
+}
+
+.newcompaniesinputs .button{
+  background-color: #BD242A;
+  font-weight: bold;
+}
+
+.newcompaniesinputs .button:hover{
+  background-color: #FFFFFF;
+  font-weight: bold;
+  color: #BD242A;
+  border-color: #BD242A;
+}
+
+.newcompaniesinputs .invbutton{
+  font-weight: bold;
+}
+
+.newcompaniesinputs .invbutton:hover{
+  border-color: #BD242A;
+  font-weight: bold;
+  color:#BD242A;
 }

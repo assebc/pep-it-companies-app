@@ -59,7 +59,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
 
   const handleSubmit = async (data: ICreateUpdateCompanyData) => {
     await updateCompany(data);
-    navigate("/");
+    navigate("/companies");
   };
 
   return (
@@ -71,6 +71,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
         form={form}
         onFinish={handleSubmit}
         className={"updatecompaniesinputs"}
+        autoComplete="off"
       >
         <Row gutter={10}>
           <Col span={11}>
@@ -80,7 +81,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
               initialValue={""}
               rules={[{ required: true, message: "Campo obrigatório" }]}
             >
-              <Input placeholder="Nome da empresa" autoComplete="off" />
+              <Input placeholder="Nome da empresa" />
             </Form.Item>
           </Col>
           <Col span={11}>
@@ -90,7 +91,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
               initialValue={""}
               rules={[{ required: true, message: "Campo obrigatório" }]}
             >
-              <Input placeholder="e.g. https://empresa.com" type="text" autoComplete="off" />
+              <Input placeholder="e.g. https://empresa.com" type="text" />
             </Form.Item>
           </Col>
           <Col span={2}>
@@ -104,7 +105,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
                   { required: true, message: "Campo obrigatório" }
                 ]}
               >
-                <InputNumber className="inputvotes" min={0} autoComplete="off" />
+                <InputNumber className="inputvotes" min={0} />
               </Form.Item>
             )}
           </Col>
@@ -116,15 +117,14 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
           initialValue={""}
           rules={[{ required: true, message: "Campo obrigatório" }]}
         >
-          <TextArea placeholder="Informações sobre a empresa" autoSize={true} autoComplete="off" />
+          <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
         </Form.Item>
 
-
         <Space className="action_btns_container">
-          <Button type="default" onClick={() => navigate("/")}>
+          <Button type="default" className="invbutton" onClick={() => navigate("/companies")}>
             Cancelar
           </Button>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" className="button" htmlType="submit">
             Ok
           </Button>
         </Space>
