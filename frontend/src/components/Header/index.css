@@ -8,13 +8,24 @@
     background-color: #FFFFFF !important;
 }
 
-.header img{
-    width: 100px;
-    height: 100px;
+.header_admin {
+    height: 10% !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 0 !important;
+    line-height: 0 !important;
+    background-color: #FFFFFF !important;
 }
 
-.header p{
+p{
     font-weight: bold;
     color: #BD242A;
     font-size: 20px;
+}
+
+.logout{
+    color: #BD242A;
+    font-size: 20px;
+    font-weight: bold;
 }
