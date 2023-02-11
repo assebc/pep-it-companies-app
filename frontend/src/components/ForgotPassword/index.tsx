@@ -4,7 +4,7 @@ import { Button, Form, Input, message, Typography } from "antd";
 import api from "../../services/api";
 import "./styles.css";
 
-export const ChangePassword: FC = () => {
+export const ForgotPassword: FC = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
@@ -39,15 +39,17 @@ export const ChangePassword: FC = () => {
         layout="vertical"
         form={form}
         onFinish={handleSubmit}
-        className={"form"}
         autoComplete="off"
+        style={{
+          width: "400px"
+        }}
       >
         <Form.Item
           label="Email"
           name="email"
           rules={[{ type: "email" }, { required: true }]}
         >
-          <Input placeholder="Email" />
+          <Input placeholder="Email" /> 
         </Form.Item>
 
         <Form.Item
@@ -70,9 +72,13 @@ export const ChangePassword: FC = () => {
           type="primary"
           className="button"
           htmlType="submit"
-          style={{ width: "100%" }}
+          style={{ 
+            width: "100%",
+            fontWeight: "bold",
+            marginTop: "-24px"
+          }}
         >
-          Enviar
+          Alterar
         </Button>
       </Form>
     </div>

@@ -1,24 +1,17 @@
 .container {
-  height: 84vh;
   background-color: #ffffff !important;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 12%;
-}
-
-.form {
-  width: 400px;
+  padding-top: 24%;
 }
 
 .form .button {
   background-color: #bd242a;
-  font-weight: bold;
 }
 
 .form .button:hover {
   background-color: #ffffff;
-  font-weight: bold;
   color: #bd242a;
   border-color: #bd242a;
 }

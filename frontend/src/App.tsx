@@ -5,7 +5,7 @@ import { Footer } from "./components/Footer";
 import { CompaniesList } from "./components/CompaniesList";
 import { CreateCompany } from "./components/CreateCompany";
 import { UpdateCompany } from "./components/UpdateCompany";
-import { ChangePassword } from "./components/ChangePassword";
+import { ForgotPassword } from "./components/ForgotPassword";
 import { Login } from "./components/Login";
 import "./index.css";
 import { FC } from "react";
@@ -39,7 +39,7 @@ function App() {
           <Routes>
             <Route path="/*" element={<Layout />} />
 
-            <Route path="/changepassword" element={<ChangePassword />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/" element={<Login />} />
           </Routes>
         </BrowserRouter>
