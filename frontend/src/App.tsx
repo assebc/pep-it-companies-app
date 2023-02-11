@@ -1,4 +1,4 @@
-import { ConfigProvider, Layout } from "antd";
+import { ConfigProvider, Layout as AntLayout } from "antd";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -8,6 +8,22 @@ import { UpdateCompany } from "./components/UpdateCompany";
 import { ChangePassword } from "./components/ChangePassword";
 import { Login } from "./components/Login";
 import "./index.css";
+import { FC } from "react";
+
+const Layout: FC = () => {
+  return (
+    <AntLayout className="layout">
+      <Header />
+      <Routes>
+        <Route path="/companies" element={<CompaniesList />} />
+        <Route path="/companies/new" element={<CreateCompany />} />
+        <Route path="/companies/:id" element={<UpdateCompany />} />
+      </Routes>
+
+      <Footer />
+    </AntLayout>
+  );
+};
 
 function App() {
   return (
@@ -19,19 +35,14 @@ function App() {
           },
         }}
       >
-        <Layout className="layout">
-          <Header />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/changepassword" element={<ChangePassword />} />
-              <Route path="/companies" element={<CompaniesList />} />
-              <Route path="companies/new" element={<CreateCompany />} />
-              <Route path="companies/:id" element={<UpdateCompany />} />
-            </Routes>
-          </BrowserRouter>
-          <Footer />
-        </Layout>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/*" element={<Layout />} />
+
+            <Route path="/changepassword" element={<ChangePassword />} />
+            <Route path="/" element={<Login />} />
+          </Routes>
+        </BrowserRouter>
       </ConfigProvider>
     </>
   );

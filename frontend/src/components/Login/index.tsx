@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Space, Button, Form, Input, Row, Col } from "antd";
+import { Space, Button, Form, Input, Row, Col, Typography } from "antd";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -37,13 +37,13 @@ export const Login: FC = () => {
   };
 
   return (
-    <div className="login">
-      <h1>{"Login"}</h1>
+    <div className="container">
+      <Typography.Title level={2}>Login</Typography.Title>
       <Form
         layout="vertical"
         form={form}
         onFinish={handleSubmit}
-        className={"logininputs"}
+        className={"form"}
         autoComplete="off"
       >
         <Form.Item
@@ -63,9 +63,7 @@ export const Login: FC = () => {
         </Form.Item>
 
         <Form.Item>
-          <Link to={"/changepassword"} className="forgotpwd">
-            Esqueceu-se da password? Clique aqui!
-          </Link>
+          <Link to={"/changepassword"}>Esqueceu-se da password?</Link>
         </Form.Item>
 
         <Row justify="space-between" gutter={12}>

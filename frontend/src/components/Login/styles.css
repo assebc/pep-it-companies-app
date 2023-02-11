@@ -1,49 +1,39 @@
-.login{
-    height: 84vh;
-    background-color: #FFFFFF !important;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 12%;
+.container {
+  height: 84vh;
+  background-color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 12%;
 }
 
-.login h1{
-    width: 20%;
-    text-align: left;
+.form {
+  width: 400px;
 }
 
-.logininputs{
-    width: 20%;
+.button {
+  background-color: #bd242a;
+  font-weight: bold;
 }
 
-.logininputs .button{
-    background-color: #BD242A;
-    font-weight: bold;
+.button:hover {
+  background-color: #ffffff;
+  font-weight: bold;
+  color: #bd242a;
+  border-color: #bd242a;
 }
 
-.logininputs .button:hover{
-    background-color: #FFFFFF;
-    font-weight: bold;
-    color: #BD242A;
-    border-color: #BD242A;
+.invbutton {
+  font-weight: bold;
 }
 
-.logininputs .invbutton{
-    font-weight: bold;
+.invbutton:hover {
+  border-color: #bd242a;
+  font-weight: bold;
+  color: #bd242a;
 }
 
-.logininputs .invbutton:hover{
-    border-color: #BD242A;
-    font-weight: bold;
-    color:#BD242A;
-}
-
-.forgotpwd{
-    color: black !important;
-}
-
-.forgotpwd:hover{
-    color:#BD242A !important;
-    text-decoration: underline;
-
+.forgotpwd:hover {
+  color: #bd242a !important;
+  text-decoration: underline;
 }
