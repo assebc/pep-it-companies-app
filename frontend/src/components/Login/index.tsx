@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Space, Button, Form, Input, Row, Col, Typography } from "antd";
+import { Button, Form, Input, Row, Col, Typography, message } from "antd";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -8,20 +8,25 @@ export const Login: FC = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
-  const handleSubmit = async (data: any) => {
-    
-    try{
-      const response = await api.post(`users/${data.email}`, data, {
+  const handleSubmit = async ({
+      email,
+      password
+    }: any) => {
 
-      });
+      try{
+        const response = await api.post("users/login",  {
+          email,
+          password
+        });
 
-      if (response.status == 200){
-        navigate("/companies");
+        if (response.status == 200){
+          message.success("Login efetuado com sucesso", 3);
+          navigate("/companies");
+        }
+
+      } catch (err: any){
+        message.error("Erro ao efetuar login", 3);
       }
-
-    } catch (err: any){
-      alert(err.response.data.error);
-    }
   };
 
   return (

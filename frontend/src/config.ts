@@ -15,15 +15,3 @@ export interface ICreateUpdateCompanyData {
   reviews: string;
   votes?: number;
 } 
-
-// TODO: check if needed
-export interface IUser {
-  email: string;
-  password: string;
-}
-
-export interface IUser {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
