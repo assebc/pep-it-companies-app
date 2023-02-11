@@ -7,38 +7,35 @@ import api from "../../services/api";
 import "./styles.css";
 
 interface IUpdateCompanyProps {
-  company?: ICompany
+  company?: ICompany;
 }
 
-export const UpdateCompany: FC<IUpdateCompanyProps> = ({
-
-}) => {
+export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
   const [company, setCompany] = useState<ICompany | undefined>();
   const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
   const getCompany = async () => {
-    try{
+    try {
       const response = await api.get(`companies/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
-      if (response.status === 200){
+      if (response.status === 200) {
         setCompany(response.data);
       }
-
-    } catch (err: any){
+    } catch (err: any) {
       alert(err.response.data.error);
     }
   };
 
-  useEffect( () => {
-    if(!company) getCompany();
-    form.setFieldsValue( {...company} );
+  useEffect(() => {
+    if (!company) getCompany();
+    form.setFieldsValue({ ...company });
   }, [company]);
 
   const updateCompany = async (data: ICreateUpdateCompanyData) => {
@@ -63,7 +60,6 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
   };
 
   return (
-    
     <div className="updatecompaniesform">
       <h1>{"Editar empresa"}</h1>
       <Form
@@ -79,7 +75,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
               label="Nome"
               name="name"
               initialValue={""}
-              rules={[{ required: true, message: "Campo obrigatório" }]}
+              rules={[{ required: true }]}
             >
               <Input placeholder="Nome da empresa" />
             </Form.Item>
@@ -89,25 +85,22 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
               label="Website URL"
               name="website_url"
               initialValue={""}
-              rules={[{ required: true, message: "Campo obrigatório" }]}
+              rules={[{ required: true }]}
             >
               <Input placeholder="e.g. https://empresa.com" type="text" />
             </Form.Item>
           </Col>
           <Col span={2}>
-            {(
+            {
               <Form.Item
                 label="Votos"
                 name="votes"
                 initialValue={0}
-                rules={[
-                  { type: "number" },
-                  { required: true, message: "Campo obrigatório" }
-                ]}
+                rules={[{ type: "number" }, { required: true }]}
               >
                 <InputNumber className="inputvotes" min={0} />
               </Form.Item>
-            )}
+            }
           </Col>
         </Row>
 
@@ -115,13 +108,17 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
           label="Informações"
           name="reviews"
           initialValue={""}
-          rules={[{ required: true, message: "Campo obrigatório" }]}
+          rules={[{ required: true }]}
         >
           <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
         </Form.Item>
 
         <Space className="action_btns_container">
-          <Button type="default" className="invbutton" onClick={() => navigate("/companies")}>
+          <Button
+            type="default"
+            className="invbutton"
+            onClick={() => navigate("/companies")}
+          >
             Cancelar
           </Button>
           <Button type="primary" className="button" htmlType="submit">
@@ -130,6 +127,5 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
         </Space>
       </Form>
     </div>
-
   );
 };

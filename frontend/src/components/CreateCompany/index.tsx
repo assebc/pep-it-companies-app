@@ -6,10 +6,7 @@ import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
 
-interface ICreateCompanyProps {
-}
-
-export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
+export const CreateCompany: FC = ({}) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
@@ -54,7 +51,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
               label="Nome"
               name="name"
               initialValue={""}
-              rules={[{ required: true, message: "Campo obrigatório" }]}
+              rules={[{ required: true }]}
             >
               <Input placeholder="Nome da empresa" />
             </Form.Item>
@@ -64,7 +61,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
               label="Website URL"
               name="website_url"
               initialValue={""}
-              rules={[{ required: true, message: "Campo obrigatório" }]}
+              rules={[{ required: true }]}
             >
               <Input placeholder="e.g. https://empresa.com" type="text" />
             </Form.Item>
@@ -75,13 +72,17 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
           label="Informações"
           name="reviews"
           initialValue={""}
-          rules={[{ required: true, message: "Campo obrigatório" }]}
+          rules={[{ required: true }]}
         >
           <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
         </Form.Item>
 
         <Space className="action_btns_container">
-          <Button type="default" className="invbutton" onClick={() => navigate("/companies")}>
+          <Button
+            type="default"
+            className="invbutton"
+            onClick={() => navigate("/companies")}
+          >
             Cancelar
           </Button>
           <Button type="primary" className="button" htmlType="submit">
