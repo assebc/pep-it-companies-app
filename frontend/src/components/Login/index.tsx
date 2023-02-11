@@ -49,7 +49,7 @@ export const Login: FC = () => {
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: "Campo obrigatório" }]}
+          rules={[{ required: true }]}
         >
           <Input placeholder="Username" />
         </Form.Item>
@@ -57,7 +57,7 @@ export const Login: FC = () => {
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: "Campo obrigatório" }]}
+          rules={[{ required: true }]}
         >
           <Input.Password placeholder="Password" />
         </Form.Item>
