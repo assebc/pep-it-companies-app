@@ -24,7 +24,6 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [company, setCompany] = useState<ICompany | undefined>();
-  const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
   const getCompany = async () => {
     try {
@@ -37,8 +36,10 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
       if (response.status === 200) {
         setCompany(response.data);
       }
+
     } catch (err: any) {
-      message.error(err.response.data.error, 3);
+      message.error("Email não existe ou Passwords não coincidem")
+      form.resetFields();
     }
   };
 

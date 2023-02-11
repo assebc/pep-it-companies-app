@@ -14,7 +14,7 @@ export const Login: FC = () => {
     }: any) => {
 
       try{
-        const response = await api.post("users/login",  {
+        const response = await api.post("login",  {
           email,
           password
         });
@@ -26,6 +26,7 @@ export const Login: FC = () => {
 
       } catch (err: any){
         message.error("Erro ao efetuar login", 3);
+        form.resetFields();
       }
   };
 

@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { Button, Layout } from "antd";
 import logo from "../../assets/pep-logo.png";
-import "./index.css";
 import { Link } from "react-router-dom";
+import { LogoutOutlined } from "@ant-design/icons";
+import "./index.css";
 
 export const Header: FC = () => {
   return (
@@ -13,7 +14,14 @@ export const Header: FC = () => {
         <img width={"100px"} height={"100px"} src={logo} alt="PEP LOGO"/>
       </Link>
       <p>PorqueEuProgramo • IT Companies</p>
-      <Button className="logout" type="link">Logout</Button>
+      <div>
+        <Button className="logout" type="link">
+          Logout 
+          <LogoutOutlined />
+        </Button>
+        
+      </div>
+
     </Layout.Header>   
       
     :
