@@ -1,39 +1,22 @@
 .container {
-  height: 84vh;
   background-color: #ffffff !important;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 12%;
-}
-
-.form {
-  width: 400px;
+  padding-top: 24%;
 }
 
 .button {
   background-color: #bd242a;
-  font-weight: bold;
 }
 
 .button:hover {
   background-color: #ffffff;
-  font-weight: bold;
   color: #bd242a;
   border-color: #bd242a;
-}
-
-.invbutton {
-  font-weight: bold;
 }
 
 .invbutton:hover {
   border-color: #bd242a;
-  font-weight: bold;
   color: #bd242a;
-}
-
-.forgotpwd:hover {
-  color: #bd242a !important;
-  text-decoration: underline;
 }

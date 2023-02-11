@@ -6,34 +6,22 @@ import "./styles.css";
 
 export const Login: FC = () => {
   const [form] = Form.useForm();
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const [user, setUser] = useState<any>(); //FIXME: dont know type name
   const navigate = useNavigate();
-  const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
   const handleSubmit = async (data: any) => {
-    //FIXME: data its not any type
-    // setUsername(data.username)
-    // setPassword(data.password);
+    
+    try{
+      const response = await api.post(`users/${data.email}`, data, {
 
-    // try{
-    //   const response = await api.get(`users/${username}`, {
-    //     headers: {
-    //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //     },
-    //   });
+      });
 
-    //   if (response.status == 200 && password == response.data.password){
-    //     setUser(response.data);
-    //     alert("Login efetuado com sucesso!");
-    //     navigate("/companies");
-    //   }
+      if (response.status == 200){
+        navigate("/companies");
+      }
 
-    // } catch (err: any){
-    //   alert(err.response.data.error);
-    // }
-    navigate("/companies");
+    } catch (err: any){
+      alert(err.response.data.error);
+    }
   };
 
   return (
@@ -43,33 +31,41 @@ export const Login: FC = () => {
         layout="vertical"
         form={form}
         onFinish={handleSubmit}
-        className={"form"}
         autoComplete="off"
+        style={{
+          width: "400px"
+        }}
       >
         <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true }]}
+          label="Email"
+          name="email"
+          rules={[{ type: "email" }, { required: true }]}
         >
-          <Input placeholder="Username" />
+          <Input placeholder="Email" />
         </Form.Item>
 
         <Form.Item
           label="Password"
           name="password"
           rules={[{ required: true }]}
+          style={{
+            marginBottom: "0px"
+          }}
         >
           <Input.Password placeholder="Password" />
         </Form.Item>
+        
+        <Link to={"/forgot-password"}>Esqueceu-se da password?</Link>
 
-        <Form.Item>
-          <Link to={"/changepassword"}>Esqueceu-se da password?</Link>
-        </Form.Item>
-
-        <Row justify="space-between" gutter={12}>
+        <Row justify="space-between" gutter={12} style={{
+            marginTop: "24px"
+          }}>
           <Col span={12}>
             <Button
-              style={{ width: "100%" }}
+              style={{ 
+                width: "100%" ,
+                fontWeight: "bold"
+              }}
               type="default"
               className="invbutton"
               onClick={() => navigate("/companies")}
@@ -80,10 +76,13 @@ export const Login: FC = () => {
 
           <Col span={12}>
             <Button
+              style={{ 
+                width: "100%",
+                fontWeight: "bold"
+              }}
               type="primary"
               className="button"
               htmlType="submit"
-              style={{ width: "100%" }}
             >
               Login
             </Button>
