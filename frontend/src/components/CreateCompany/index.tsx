@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { Form, Input, Button, Space, Row, Col } from "antd";
+import { Form, Input, Button, Space, Row, Col, message } from "antd";
 import { ICreateUpdateCompanyData } from "../../config";
 import { useNavigate } from "react-router-dom";
 import TextArea from "antd/es/input/TextArea";
@@ -23,10 +23,10 @@ export const CreateCompany: FC = ({}) => {
       });
 
       if (response.status === 201) {
-        alert("Empresa criada com sucesso");
+        message.success("Empresa criada com sucesso", 3);
       }
     } catch (err: any) {
-      alert(err.response.data.error);
+      message.error(err.response.data.error, 3);
     }
   };
 

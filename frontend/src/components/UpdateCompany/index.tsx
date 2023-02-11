@@ -1,5 +1,14 @@
 import { FC, useEffect, useState } from "react";
-import { Form, Input, Button, Space, InputNumber, Row, Col } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Space,
+  InputNumber,
+  Row,
+  Col,
+  message,
+} from "antd";
 import { ICompany, ICreateUpdateCompanyData } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
 import TextArea from "antd/es/input/TextArea";
@@ -29,7 +38,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
         setCompany(response.data);
       }
     } catch (err: any) {
-      alert(err.response.data.error);
+      message.error(err.response.data.error, 3);
     }
   };
 
@@ -47,10 +56,10 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
       });
 
       if (response.status === 200) {
-        alert("Empresa atualizada com sucesso com sucesso");
+        message.success("Empresa atualizada com sucesso", 3);
       }
     } catch (err: any) {
-      alert(err.response.data.error);
+      message.error(err.response.data.error, 3);
     }
   };
 
