@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import { Link , useNavigate } from "react-router-dom";
-import { Space, Button, Form, Input } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import { Space, Button, Form, Input, Row, Col } from "antd";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -11,8 +11,9 @@ export const Login: FC = () => {
   const [user, setUser] = useState<any>(); //FIXME: dont know type name
   const navigate = useNavigate();
   const isAdmin: boolean = localStorage.getItem("token") ? true : false;
-  
-  const handleSubmit = async (data: any) => { //FIXME: data its not any type 
+
+  const handleSubmit = async (data: any) => {
+    //FIXME: data its not any type
     // setUsername(data.username)
     // setPassword(data.password);
 
@@ -33,7 +34,6 @@ export const Login: FC = () => {
     //   alert(err.response.data.error);
     // }
     navigate("/companies");
-    
   };
 
   return (
@@ -50,16 +50,16 @@ export const Login: FC = () => {
           label="Username"
           name="username"
           rules={[{ required: true, message: "Campo obrigatório" }]}
-          >
-            <Input placeholder="Username"/>
-          </Form.Item>
+        >
+          <Input placeholder="Username" />
+        </Form.Item>
 
         <Form.Item
           label="Password"
           name="password"
           rules={[{ required: true, message: "Campo obrigatório" }]}
         >
-          <Input.Password placeholder="Password"/>
+          <Input.Password placeholder="Password" />
         </Form.Item>
 
         <Form.Item>
@@ -68,17 +68,29 @@ export const Login: FC = () => {
           </Link>
         </Form.Item>
 
-        <Form.Item>
-          <Space>
-            <Button type="default" className="invbutton" onClick={() => navigate("/companies")}>
+        <Row justify="space-between" gutter={12}>
+          <Col span={12}>
+            <Button
+              style={{ width: "100%" }}
+              type="default"
+              className="invbutton"
+              onClick={() => navigate("/companies")}
+            >
               Visitar
             </Button>
-            <Button type="primary" className="button" htmlType="submit" >
+          </Col>
+
+          <Col span={12}>
+            <Button
+              type="primary"
+              className="button"
+              htmlType="submit"
+              style={{ width: "100%" }}
+            >
               Login
             </Button>
-          </Space>
-        </Form.Item>
-
+          </Col>
+        </Row>
       </Form>
     </div>
   );
