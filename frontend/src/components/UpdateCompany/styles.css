@@ -23,3 +23,25 @@
 .inputvotes{
   width: 100%;
 }
+
+.updatecompaniesinputs .button{
+  background-color: #BD242A;
+  font-weight: bold;
+}
+
+.updatecompaniesinputs .button:hover{
+  background-color: #FFFFFF;
+  font-weight: bold;
+  color: #BD242A;
+  border-color: #BD242A;
+}
+
+.updatecompaniesinputs .invbutton{
+  font-weight: bold;
+}
+
+.updatecompaniesinputs .invbutton:hover{
+  border-color: #BD242A;
+  font-weight: bold;
+  color:#BD242A;
+}

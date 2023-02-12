@@ -1,15 +1,12 @@
 import { FC, useEffect } from "react";
-import { Form, Input, Button, Space, Row, Col } from "antd";
+import { Form, Input, Button, Space, Row, Col, message } from "antd";
 import { ICreateUpdateCompanyData } from "../../config";
 import { useNavigate } from "react-router-dom";
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
 
-interface ICreateCompanyProps {
-}
-
-export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
+export const CreateCompany: FC = ({}) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
@@ -26,16 +23,16 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
       });
 
       if (response.status === 201) {
-        alert("Empresa criada com sucesso");
+        message.success("Empresa criada com sucesso", 3);
       }
     } catch (err: any) {
-      alert(err.response.data.error);
+      message.error(err.response.data.error, 3);
     }
   };
 
   const handleSubmit = async (data: ICreateUpdateCompanyData) => {
     await createCompany(data);
-    navigate("/");
+    navigate("/companies");
   };
 
   return (
@@ -46,6 +43,7 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
         form={form}
         onFinish={handleSubmit}
         className={"newcompaniesinputs"}
+        autoComplete="off"
       >
         <Row gutter={10}>
           <Col span={12}>
@@ -53,9 +51,9 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
               label="Nome"
               name="name"
               initialValue={""}
-              rules={[{ required: true, message: "Campo obrigatório" }]}
+              rules={[{ required: true }]}
             >
-              <Input placeholder="Nome da empresa" autoComplete="off"/>
+              <Input placeholder="Nome da empresa" />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -63,9 +61,9 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
               label="Website URL"
               name="website_url"
               initialValue={""}
-              rules={[{ required: true, message: "Campo obrigatório" }]}
+              rules={[{ required: true }]}
             >
-              <Input placeholder="e.g. https://empresa.com" type="text" autoComplete="off"/>
+              <Input placeholder="e.g. https://empresa.com" type="text" />
             </Form.Item>
           </Col>
         </Row>
@@ -74,16 +72,20 @@ export const CreateCompany: FC<ICreateCompanyProps> = ({}) => {
           label="Informações"
           name="reviews"
           initialValue={""}
-          rules={[{ required: true, message: "Campo obrigatório" }]}
+          rules={[{ required: true }]}
         >
-          <TextArea placeholder="Informações sobre a empresa" autoSize={true} autoComplete="off"/>
+          <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
         </Form.Item>
 
         <Space className="action_btns_container">
-          <Button type="default" onClick={() => navigate("/")}>
+          <Button
+            type="default"
+            className="invbutton"
+            onClick={() => navigate("/companies")}
+          >
             Cancelar
           </Button>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" className="button" htmlType="submit">
             Ok
           </Button>
         </Space>

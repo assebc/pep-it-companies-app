@@ -1,0 +1,17 @@
+.container {
+  background-color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 24%;
+}
+
+.form .button {
+  background-color: #bd242a;
+}
+
+.form .button:hover {
+  background-color: #ffffff;
+  color: #bd242a;
+  border-color: #bd242a;
+}

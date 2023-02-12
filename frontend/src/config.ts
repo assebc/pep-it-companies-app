@@ -14,4 +14,4 @@ export interface ICreateUpdateCompanyData {
   website_url: string;
   reviews: string;
   votes?: number;
-}
+} 

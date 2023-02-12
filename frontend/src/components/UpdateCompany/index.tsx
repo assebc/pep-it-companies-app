@@ -1,5 +1,14 @@
 import { FC, useEffect, useState } from "react";
-import { Form, Input, Button, Space, InputNumber, Row, Col } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Space,
+  InputNumber,
+  Row,
+  Col,
+  message,
+} from "antd";
 import { ICompany, ICreateUpdateCompanyData } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
 import TextArea from "antd/es/input/TextArea";
@@ -7,38 +16,36 @@ import api from "../../services/api";
 import "./styles.css";
 
 interface IUpdateCompanyProps {
-  company?: ICompany
+  company?: ICompany;
 }
 
-export const UpdateCompany: FC<IUpdateCompanyProps> = ({
-
-}) => {
+export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
   const [company, setCompany] = useState<ICompany | undefined>();
-  const isAdmin: boolean = localStorage.getItem("token") ? true : false;
 
   const getCompany = async () => {
-    try{
+    try {
       const response = await api.get(`companies/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
-      if (response.status === 200){
+      if (response.status === 200) {
         setCompany(response.data);
       }
 
-    } catch (err: any){
-      alert(err.response.data.error);
+    } catch (err: any) {
+      message.error("Email não existe ou Passwords não coincidem")
+      form.resetFields();
     }
   };
 
-  useEffect( () => {
-    if(!company) getCompany();
-    form.setFieldsValue( {...company} );
+  useEffect(() => {
+    if (!company) getCompany();
+    form.setFieldsValue({ ...company });
   }, [company]);
 
   const updateCompany = async (data: ICreateUpdateCompanyData) => {
@@ -50,20 +57,19 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
       });
 
       if (response.status === 200) {
-        alert("Empresa atualizada com sucesso com sucesso");
+        message.success("Empresa atualizada com sucesso", 3);
       }
     } catch (err: any) {
-      alert(err.response.data.error);
+      message.error(err.response.data.error, 3);
     }
   };
 
   const handleSubmit = async (data: ICreateUpdateCompanyData) => {
     await updateCompany(data);
-    navigate("/");
+    navigate("/companies");
   };
 
   return (
-    
     <div className="updatecompaniesform">
       <h1>{"Editar empresa"}</h1>
       <Form
@@ -71,6 +77,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
         form={form}
         onFinish={handleSubmit}
         className={"updatecompaniesinputs"}
+        autoComplete="off"
       >
         <Row gutter={10}>
           <Col span={11}>
@@ -78,9 +85,9 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
               label="Nome"
               name="name"
               initialValue={""}
-              rules={[{ required: true, message: "Campo obrigatório" }]}
+              rules={[{ required: true }]}
             >
-              <Input placeholder="Nome da empresa" autoComplete="off" />
+              <Input placeholder="Nome da empresa" />
             </Form.Item>
           </Col>
           <Col span={11}>
@@ -88,25 +95,22 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
               label="Website URL"
               name="website_url"
               initialValue={""}
-              rules={[{ required: true, message: "Campo obrigatório" }]}
+              rules={[{ required: true }]}
             >
-              <Input placeholder="e.g. https://empresa.com" type="text" autoComplete="off" />
+              <Input placeholder="e.g. https://empresa.com" type="text" />
             </Form.Item>
           </Col>
           <Col span={2}>
-            {(
+            {
               <Form.Item
                 label="Votos"
                 name="votes"
                 initialValue={0}
-                rules={[
-                  { type: "number" },
-                  { required: true, message: "Campo obrigatório" }
-                ]}
+                rules={[{ type: "number" }, { required: true }]}
               >
-                <InputNumber className="inputvotes" min={0} autoComplete="off" />
+                <InputNumber className="inputvotes" min={0} />
               </Form.Item>
-            )}
+            }
           </Col>
         </Row>
 
@@ -114,22 +118,24 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({
           label="Informações"
           name="reviews"
           initialValue={""}
-          rules={[{ required: true, message: "Campo obrigatório" }]}
+          rules={[{ required: true }]}
         >
-          <TextArea placeholder="Informações sobre a empresa" autoSize={true} autoComplete="off" />
+          <TextArea placeholder="Informações sobre a empresa" autoSize={true} />
         </Form.Item>
 
-
         <Space className="action_btns_container">
-          <Button type="default" onClick={() => navigate("/")}>
+          <Button
+            type="default"
+            className="invbutton"
+            onClick={() => navigate("/companies")}
+          >
             Cancelar
           </Button>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" className="button" htmlType="submit">
             Ok
           </Button>
         </Space>
       </Form>
     </div>
-
   );
 };
