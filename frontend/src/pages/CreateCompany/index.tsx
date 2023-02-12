@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { Form, Input, Button, Space, Row, Col, message } from "antd";
-import { ICreateUpdateCompanyData } from "../../config";
+import { ACCESS_TOKEN_KEY, ICreateUpdateCompanyData } from "../../config";
 import { useNavigate } from "react-router-dom";
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
@@ -18,7 +18,7 @@ export const CreateCompany: FC = ({}) => {
     try {
       const response = await api.post("companies", data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`,
         },
       });
 

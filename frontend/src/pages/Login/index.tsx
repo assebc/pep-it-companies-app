@@ -3,31 +3,31 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Input, Row, Col, Typography, message } from "antd";
 import api from "../../services/api";
 import "./styles.css";
+import { ACCESS_TOKEN_KEY } from "../../config";
+
+interface ILoginPayload {
+  email: string;
+  password: string;
+}
 
 export const Login: FC = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
-  const handleSubmit = async ({
-      email,
-      password
-    }: any) => {
+  const handleSubmit = async ({ email, password }: ILoginPayload) => {
+    try {
+      const response = await api.post("login", {
+        email,
+        password,
+      });
 
-      try{
-        const response = await api.post("login",  {
-          email,
-          password
-        });
-
-        if (response.status == 200){
-          message.success("Login efetuado com sucesso", 3);
-          navigate("/companies");
-        }
-
-      } catch (err: any){
-        message.error("Erro ao efetuar login", 3);
-        form.resetFields();
+      if (response.status == 200) {
+        localStorage.setItem(ACCESS_TOKEN_KEY, response.data);
+        navigate("/companies");
       }
+    } catch (err: any) {
+      message.error(err.response.data.error, 3);
+    }
   };
 
   return (
@@ -39,7 +39,7 @@ export const Login: FC = () => {
         onFinish={handleSubmit}
         autoComplete="off"
         style={{
-          width: "400px"
+          width: "400px",
         }}
       >
         <Form.Item
@@ -55,22 +55,26 @@ export const Login: FC = () => {
           name="password"
           rules={[{ required: true }]}
           style={{
-            marginBottom: "0px"
+            marginBottom: "0px",
           }}
         >
           <Input.Password placeholder="Password" />
         </Form.Item>
-        
+
         <Link to={"/forgot-password"}>Esqueceu-se da password?</Link>
 
-        <Row justify="space-between" gutter={12} style={{
-            marginTop: "24px"
-          }}>
+        <Row
+          justify="space-between"
+          gutter={12}
+          style={{
+            marginTop: "24px",
+          }}
+        >
           <Col span={12}>
             <Button
-              style={{ 
-                width: "100%" ,
-                fontWeight: "bold"
+              style={{
+                width: "100%",
+                fontWeight: "bold",
               }}
               type="default"
               className="invbutton"
@@ -82,9 +86,9 @@ export const Login: FC = () => {
 
           <Col span={12}>
             <Button
-              style={{ 
+              style={{
                 width: "100%",
-                fontWeight: "bold"
+                fontWeight: "bold",
               }}
               type="primary"
               className="button"

@@ -9,7 +9,11 @@ import {
   Col,
   message,
 } from "antd";
-import { ICompany, ICreateUpdateCompanyData } from "../../config";
+import {
+  ACCESS_TOKEN_KEY,
+  ICompany,
+  ICreateUpdateCompanyData,
+} from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
@@ -29,16 +33,15 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
     try {
       const response = await api.get(`companies/${id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`,
         },
       });
 
       if (response.status === 200) {
         setCompany(response.data);
       }
-
     } catch (err: any) {
-      message.error("Email não existe ou Passwords não coincidem")
+      message.error("Email não existe ou Passwords não coincidem");
       form.resetFields();
     }
   };
@@ -52,7 +55,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
     try {
       const response = await api.put(`companies/${company?.id}`, data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`,
         },
       });
 
