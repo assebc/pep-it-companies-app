@@ -2,11 +2,11 @@ import { ConfigProvider, Layout as AntLayout } from "antd";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { CompaniesList } from "./components/CompaniesList";
-import { CreateCompany } from "./components/CreateCompany";
-import { UpdateCompany } from "./components/UpdateCompany";
-import { ForgotPassword } from "./components/ForgotPassword";
-import { Login } from "./components/Login";
+import { CompaniesList } from "./pages/CompaniesList";
+import { CreateCompany } from "./pages/CreateCompany";
+import { UpdateCompany } from "./pages/UpdateCompany";
+import { ForgotPassword } from "./pages/ForgotPassword";
+import { Login } from "./pages/Login";
 import "./index.css";
 import { FC } from "react";
 
