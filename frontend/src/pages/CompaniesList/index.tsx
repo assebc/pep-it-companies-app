@@ -1,15 +1,17 @@
 import { FC, useEffect, useState } from "react";
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Layout, Space, Button, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { ICompany } from "../../config";
+import { ACCESS_TOKEN_KEY, ICompany } from "../../config";
 import api from "../../services/api";
 import "./styles.css";
 
 export const CompaniesList: FC = () => {
   const [companies, setCompanies] = useState<ICompany[]>();
   const navigate = useNavigate();
-  const isAdmin: boolean = localStorage.getItem("token") ? true : false;
+  const isAdmin: boolean = localStorage.getItem(ACCESS_TOKEN_KEY)
+    ? true
+    : false;
 
   const DEFAULT_COLUMNS: ColumnsType<ICompany> = [
     {
@@ -22,7 +24,7 @@ export const CompaniesList: FC = () => {
       title: "Informações",
       dataIndex: "reviews",
       key: "reviews",
-      width: localStorage.getItem("token") ? "630px" : "810px",
+      width: localStorage.getItem(ACCESS_TOKEN_KEY) ? "630px" : "810px",
     },
     {
       title: "Website",
@@ -52,8 +54,15 @@ export const CompaniesList: FC = () => {
       render: (_, record) => {
         return (
           <Space size="middle">
-            <Button className="invbutton" onClick={() => handleVote(record)}>Votar</Button>
-            <Button className="invbutton" onClick={() => navigate(`/companies/${record.id}`)}>Editar</Button>
+            <Button className="invbutton" onClick={() => handleVote(record)}>
+              Votar
+            </Button>
+            <Button
+              className="invbutton"
+              onClick={() => navigate(`/companies/${record.id}`)}
+            >
+              Editar
+            </Button>
           </Space>
         );
       },
@@ -69,12 +78,12 @@ export const CompaniesList: FC = () => {
   useEffect(() => {
     getCompanies();
   }, []);
-  
+
   const handleVote = async (record: ICompany) => {
     try {
       const response = await api.patch(`companies/${record.id}/vote`, null, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`,
         },
       });
       if (response.status === 200) {
@@ -102,7 +111,9 @@ export const CompaniesList: FC = () => {
 
           <Table
             columns={
-              localStorage.getItem("token") ? ADMIN_COLUMNS : DEFAULT_COLUMNS
+              localStorage.getItem(ACCESS_TOKEN_KEY)
+                ? ADMIN_COLUMNS
+                : DEFAULT_COLUMNS
             }
             pagination={false}
             bordered={true}
@@ -110,7 +121,6 @@ export const CompaniesList: FC = () => {
             dataSource={companies}
             rowKey="id"
           ></Table>
-
         </div>
       </div>
     </Layout.Content>

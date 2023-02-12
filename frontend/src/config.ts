@@ -1,3 +1,5 @@
+export const ACCESS_TOKEN_KEY: string = "accessToken";
+
 export interface ICompany {
   id: number;
   name: string;
@@ -14,4 +16,4 @@ export interface ICreateUpdateCompanyData {
   website_url: string;
   reviews: string;
   votes?: number;
-} 
+}
