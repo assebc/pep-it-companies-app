@@ -49,7 +49,7 @@ export const ForgotPassword: FC = () => {
           name="email"
           rules={[{ type: "email" }, { required: true }]}
         >
-          <Input placeholder="Email" /> 
+          <Input placeholder="Email" />
         </Form.Item>
 
         <Form.Item
@@ -70,9 +70,9 @@ export const ForgotPassword: FC = () => {
 
         <Button
           type="primary"
-          className="button"
+          className="change_button"
           htmlType="submit"
-          style={{ 
+          style={{
             width: "100%",
             fontWeight: "bold",
             marginTop: "-24px"

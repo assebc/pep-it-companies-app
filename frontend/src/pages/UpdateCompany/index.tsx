@@ -73,13 +73,13 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({ }) => {
   };
 
   return (
-    <div className="updatecompaniesform">
+    <div className="from_wrapper">
       <h1>{"Editar empresa"}</h1>
       <Form
         layout="vertical"
         form={form}
         onFinish={handleSubmit}
-        className={"updatecompaniesinputs"}
+        className={"inputs_wrapper"}
         autoComplete="off"
       >
         <Row gutter={10}>
@@ -111,7 +111,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({ }) => {
                 initialValue={0}
                 rules={[{ type: "number" }, { required: true }]}
               >
-                <InputNumber className="inputvotes" min={0} />
+                <InputNumber className="input_votes" min={0} />
               </Form.Item>
             }
           </Col>
@@ -129,12 +129,12 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({ }) => {
         <Space className="action_btns_container">
           <Button
             type="default"
-            className="inverted_button"
+            className="cancel_button"
             onClick={() => navigate("/companies")}
           >
             Cancelar
           </Button>
-          <Button type="primary" className="button" htmlType="submit">
+          <Button type="primary" className="submit_button" htmlType="submit">
             Ok
           </Button>
         </Space>

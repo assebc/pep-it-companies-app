@@ -54,11 +54,11 @@ export const CompaniesList: FC = () => {
       render: (_, record) => {
         return (
           <Space size="middle">
-            <Button className="inverted_button" onClick={() => handleVote(record)}>
+            <Button className="actions_button" onClick={() => handleVote(record)}>
               Votar
             </Button>
             <Button
-              className="inverted_button"
+              className="actions_button"
               onClick={() => navigate(`/companies/${record.id}`)}
             >
               Editar
@@ -100,7 +100,7 @@ export const CompaniesList: FC = () => {
         <div className="components">
           {isAdmin && (
             <Button
-              className="button"
+              className="create_button"
               type="primary"
               size="large"
               onClick={() => navigate("/companies/new")}

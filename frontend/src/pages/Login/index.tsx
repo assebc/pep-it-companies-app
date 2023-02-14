@@ -77,7 +77,7 @@ export const Login: FC = () => {
                 fontWeight: "bold",
               }}
               type="default"
-              className="inverted_button"
+              className="visit_button"
               onClick={() => navigate("/companies")}
             >
               Visitar
@@ -91,7 +91,7 @@ export const Login: FC = () => {
                 fontWeight: "bold",
               }}
               type="primary"
-              className="button"
+              className="login_button"
               htmlType="submit"
             >
               Login

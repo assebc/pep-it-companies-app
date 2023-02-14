@@ -36,13 +36,13 @@ export const CreateCompany: FC = ({ }) => {
   };
 
   return (
-    <div className="newcompaniesform">
+    <div className="form_wrapper">
       <h1>{"Adicionar empresa"}</h1>
       <Form
         layout="vertical"
         form={form}
         onFinish={handleSubmit}
-        className={"newcompaniesinputs"}
+        className={"inpots_wrapper"}
         autoComplete="off"
       >
         <Row gutter={10}>
@@ -80,12 +80,12 @@ export const CreateCompany: FC = ({ }) => {
         <Space className="action_btns_container">
           <Button
             type="default"
-            className="inverted_button"
+            className="cancel_button"
             onClick={() => navigate("/companies")}
           >
             Cancelar
           </Button>
-          <Button type="primary" className="button" htmlType="submit">
+          <Button type="primary" className="submit_button" htmlType="submit">
             Ok
           </Button>
         </Space>

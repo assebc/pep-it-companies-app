@@ -3,7 +3,7 @@
   justify-content: end;
 }
 
-.updatecompaniesform {
+.form_wrapper {
   height: 84vh;
   display: flex;
   align-items: center;
@@ -11,36 +11,36 @@
   padding-top: 12%;
 }
 
-.updatecompaniesform h1 {
+.form_wrapper h1 {
   width: 80%;
   text-align: left;
 }
 
-.updatecompaniesinputs {
-  width: 80%;
-}
-
-.inputvotes {
+.input_votes {
   width: 100%;
 }
 
-.updatecompaniesinputs .button {
+.inputs_wrapper {
+  width: 80%;
+}
+
+.inputs_wrapper .submit_button {
   background-color: #BD242A;
   font-weight: bold;
 }
 
-.updatecompaniesinputs .button:hover {
+.inputs_wrapper .submit_button:hover {
   background-color: #FFFFFF;
   font-weight: bold;
   color: #BD242A;
   border-color: #BD242A;
 }
 
-.updatecompaniesinputs .inverted_button {
+.inputs_wrapper .cancel_button {
   font-weight: bold;
 }
 
-.updatecompaniesinputs .inverted_button:hover {
+.inputs_wrapper .cancel_button:hover {
   border-color: #BD242A;
   font-weight: bold;
   color: #BD242A;
