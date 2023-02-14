@@ -1,9 +1,17 @@
 import { FC, useEffect, useState } from "react";
-import { Form, Input, Space, InputNumber, Row, Col, message } from "antd";
+import {
+  Form,
+  Input,
+  Space,
+  InputNumber,
+  Row,
+  Col,
+  message,
+} from "antd";
 import {
   ACCESS_TOKEN_KEY,
   ICompany,
-  ICreateUpdateCompanyData,
+  ICreateUpdateCompanyData
 } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
