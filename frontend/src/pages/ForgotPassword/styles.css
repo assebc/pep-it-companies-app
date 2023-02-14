@@ -5,13 +5,3 @@
   flex-direction: column;
   padding-top: 24%;
 }
-
-.container .change_button {
-  background-color: #bd242a;
-}
-
-.container .change_button:hover {
-  background-color: #ffffff;
-  color: #bd242a;
-  border-color: #bd242a;
-}

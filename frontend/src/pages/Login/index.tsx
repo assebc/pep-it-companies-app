@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Form, Input, Row, Col, Typography, message } from "antd";
+import { Form, Input, Row, Col, Typography, message } from "antd";
+import { ACCESS_TOKEN_KEY } from "../../config";
+import { LoginButton, VisitButton } from "../../components/Buttons";
 import api from "../../services/api";
 import "./styles.css";
-import { ACCESS_TOKEN_KEY } from "../../config";
 
 interface ILoginPayload {
   email: string;
@@ -61,7 +62,9 @@ export const Login: FC = () => {
           <Input.Password placeholder="Password" />
         </Form.Item>
 
-        <Link to={"/forgot-password"}>Esqueceu-se da password?</Link>
+        <Link to={"/forgot-password"}>
+          Esqueceu-se da password?
+        </Link>
 
         <Row
           justify="space-between"
@@ -71,31 +74,13 @@ export const Login: FC = () => {
           }}
         >
           <Col span={12}>
-            <Button
-              style={{
-                width: "100%",
-                fontWeight: "bold",
-              }}
-              type="default"
-              className="visit_button"
-              onClick={() => navigate("/companies")}
-            >
-              Visitar
-            </Button>
+            {/* FIXME: navigate("/companies") */}
+            <VisitButton />
           </Col>
 
           <Col span={12}>
-            <Button
-              style={{
-                width: "100%",
-                fontWeight: "bold",
-              }}
-              type="primary"
-              className="login_button"
-              htmlType="submit"
-            >
-              Login
-            </Button>
+            {/* FIXME: handleSubmit */}
+            <LoginButton />
           </Col>
         </Row>
       </Form>
