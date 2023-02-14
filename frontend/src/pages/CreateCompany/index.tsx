@@ -6,7 +6,7 @@ import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
 
-export const CreateCompany: FC = ({}) => {
+export const CreateCompany: FC = ({ }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
@@ -36,13 +36,13 @@ export const CreateCompany: FC = ({}) => {
   };
 
   return (
-    <div className="newcompaniesform">
+    <div className="form_wrapper">
       <h1>{"Adicionar empresa"}</h1>
       <Form
         layout="vertical"
         form={form}
         onFinish={handleSubmit}
-        className={"newcompaniesinputs"}
+        className={"inputs_wrapper"}
         autoComplete="off"
       >
         <Row gutter={10}>
@@ -80,12 +80,12 @@ export const CreateCompany: FC = ({}) => {
         <Space className="action_btns_container">
           <Button
             type="default"
-            className="invbutton"
+            className="cancel_button"
             onClick={() => navigate("/companies")}
           >
             Cancelar
           </Button>
-          <Button type="primary" className="button" htmlType="submit">
+          <Button type="primary" className="submit_button" htmlType="submit">
             Ok
           </Button>
         </Space>

@@ -6,17 +6,17 @@
   padding-top: 24%;
 }
 
-.button {
+.login_button {
   background-color: #bd242a;
 }
 
-.button:hover {
+.login_button:hover {
   background-color: #ffffff;
   color: #bd242a;
   border-color: #bd242a;
 }
 
-.invbutton:hover {
+.visit_button:hover {
   border-color: #bd242a;
   color: #bd242a;
 }

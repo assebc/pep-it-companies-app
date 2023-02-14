@@ -6,11 +6,11 @@
   padding-top: 24%;
 }
 
-.form .button {
+.container .change_button {
   background-color: #bd242a;
 }
 
-.form .button:hover {
+.container .change_button:hover {
   background-color: #ffffff;
   color: #bd242a;
   border-color: #bd242a;

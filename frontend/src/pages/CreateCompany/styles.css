@@ -3,7 +3,7 @@
   justify-content: end;
 }
 
-.newcompaniesform{
+.form_wrapper {
   height: 84vh;
   display: flex;
   align-items: center;
@@ -11,33 +11,33 @@
   padding-top: 12%;
 }
 
-.newcompaniesform h1{
+.form_wrapper h1 {
   width: 80%;
   text-align: left;
 }
 
-.newcompaniesinputs{
+.inputs_wrapper {
   width: 80%;
 }
 
-.newcompaniesinputs .button{
+.inputs_wrapper .submit_button {
   background-color: #BD242A;
   font-weight: bold;
 }
 
-.newcompaniesinputs .button:hover{
+.inputs_wrapper .submit_button:hover {
   background-color: #FFFFFF;
   font-weight: bold;
   color: #BD242A;
   border-color: #BD242A;
 }
 
-.newcompaniesinputs .invbutton{
+.inputs_wrapper .cancel_button {
   font-weight: bold;
 }
 
-.newcompaniesinputs .invbutton:hover{
+.inputs_wrapper .cancel_button:hover {
   border-color: #BD242A;
   font-weight: bold;
-  color:#BD242A;
+  color: #BD242A;
 }

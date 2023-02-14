@@ -1,30 +1,30 @@
-.content{
+.content {
     height: 84%;
     background-color: #FFFFFF !important;
 }
 
-.align{
+.align {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 64px 48px;
 }
 
-.components{
+.components {
     display: flex;
     justify-content: center;
     align-items: end;
     flex-direction: column;
 }
 
-.components .button{
+.components .create_button {
     margin-bottom: 8px;
     width: 100px;
     background-color: #BD242A;
     font-weight: bold;
 }
 
-.components .button:hover{
+.components .create_button:hover {
     margin-bottom: 8px;
     width: 100px;
     background-color: #FFFFFF;
@@ -33,12 +33,12 @@
     border-color: #BD242A;
 }
 
-.invbutton{
+.actions_button {
     font-weight: bold;
 }
 
-.invbutton:hover{
+.actions_button:hover {
     border-color: #BD242A !important;
     font-weight: bold;
-    color:#BD242A !important;
+    color: #BD242A !important;
 }
