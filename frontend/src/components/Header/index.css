@@ -1,4 +1,4 @@
-.header{
+.header {
     height: 10% !important;
     display: flex;
     justify-content: space-between;
@@ -18,13 +18,13 @@
     background-color: #FFFFFF !important;
 }
 
-p{
+p {
     font-weight: bold;
     color: #BD242A;
     font-size: 20px;
 }
 
-.logout{
+.logout {
     color: #BD242A;
     font-size: 20px;
     font-weight: bold;

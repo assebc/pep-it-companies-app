@@ -3,7 +3,7 @@
   justify-content: end;
 }
 
-.newcompaniesform{
+.newcompaniesform {
   height: 84vh;
   display: flex;
   align-items: center;
@@ -11,33 +11,33 @@
   padding-top: 12%;
 }
 
-.newcompaniesform h1{
+.newcompaniesform h1 {
   width: 80%;
   text-align: left;
 }
 
-.newcompaniesinputs{
+.newcompaniesinputs {
   width: 80%;
 }
 
-.newcompaniesinputs .button{
+.newcompaniesinputs .button {
   background-color: #BD242A;
   font-weight: bold;
 }
 
-.newcompaniesinputs .button:hover{
+.newcompaniesinputs .button:hover {
   background-color: #FFFFFF;
   font-weight: bold;
   color: #BD242A;
   border-color: #BD242A;
 }
 
-.newcompaniesinputs .invbutton{
+.newcompaniesinputs .inverted_button {
   font-weight: bold;
 }
 
-.newcompaniesinputs .invbutton:hover{
+.newcompaniesinputs .inverted_button:hover {
   border-color: #BD242A;
   font-weight: bold;
-  color:#BD242A;
+  color: #BD242A;
 }

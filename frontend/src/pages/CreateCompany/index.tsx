@@ -6,7 +6,7 @@ import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
 
-export const CreateCompany: FC = ({}) => {
+export const CreateCompany: FC = ({ }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
@@ -80,7 +80,7 @@ export const CreateCompany: FC = ({}) => {
         <Space className="action_btns_container">
           <Button
             type="default"
-            className="invbutton"
+            className="inverted_button"
             onClick={() => navigate("/companies")}
           >
             Cancelar

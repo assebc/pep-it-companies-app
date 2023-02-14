@@ -23,7 +23,7 @@ interface IUpdateCompanyProps {
   company?: ICompany;
 }
 
-export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
+export const UpdateCompany: FC<IUpdateCompanyProps> = ({ }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -129,7 +129,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
         <Space className="action_btns_container">
           <Button
             type="default"
-            className="invbutton"
+            className="inverted_button"
             onClick={() => navigate("/companies")}
           >
             Cancelar

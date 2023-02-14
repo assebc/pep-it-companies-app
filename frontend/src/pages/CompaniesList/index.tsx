@@ -54,11 +54,11 @@ export const CompaniesList: FC = () => {
       render: (_, record) => {
         return (
           <Space size="middle">
-            <Button className="invbutton" onClick={() => handleVote(record)}>
+            <Button className="inverted_button" onClick={() => handleVote(record)}>
               Votar
             </Button>
             <Button
-              className="invbutton"
+              className="inverted_button"
               onClick={() => navigate(`/companies/${record.id}`)}
             >
               Editar
