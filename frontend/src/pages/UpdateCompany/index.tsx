@@ -73,7 +73,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({ }) => {
   };
 
   return (
-    <div className="from_wrapper">
+    <div className="form_wrapper">
       <h1>{"Editar empresa"}</h1>
       <Form
         layout="vertical"

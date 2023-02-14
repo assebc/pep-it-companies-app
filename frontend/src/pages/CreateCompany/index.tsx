@@ -42,7 +42,7 @@ export const CreateCompany: FC = ({ }) => {
         layout="vertical"
         form={form}
         onFinish={handleSubmit}
-        className={"inpots_wrapper"}
+        className={"inputs_wrapper"}
         autoComplete="off"
       >
         <Row gutter={10}>
