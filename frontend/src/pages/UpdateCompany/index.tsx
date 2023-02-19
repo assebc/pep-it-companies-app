@@ -6,11 +6,7 @@ import {
   ICreateUpdateCompanyData,
 } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import { Button } from "../../components/Button";
-=======
-import { ActionsButton, SubmitButton } from "../../components/Buttons";
->>>>>>> refactor: added props to button component
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
@@ -19,11 +15,7 @@ interface IUpdateCompanyProps {
   company?: ICompany;
 }
 
-<<<<<<< HEAD
-export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
-=======
 export const UpdateCompany: FC<IUpdateCompanyProps> = () => {
->>>>>>> feat: PrivateRoute component, need fixes
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -133,28 +125,8 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = () => {
         </Form.Item>
 
         <Space className="action_btns_container">
-<<<<<<< HEAD
-<<<<<<< HEAD
           <Button onClick={() => navigate("/companies")} children="Cancelar" />
           <Button htmlType="submit" children="Ok" />
-=======
-        <ActionsButton 
-            onClick={() => navigate("/companies")} 
-            type="default" 
-            text="Cancelar"/>
-          <SubmitButton 
-            onClick={() => undefined} 
-            type="primary" 
-            text="Ok"/>
->>>>>>> refactor: added props to button component
-=======
-          <ActionsButton
-            onClick={() => navigate("/companies")}
-            type="default"
-            text="Cancelar"
-          />
-          <SubmitButton onClick={() => undefined} type="primary" text="Ok" />
->>>>>>> fix: private routes fixes
         </Space>
       </Form>
     </div>
