@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
-import { Form, Input, Button, Space, Row, Col, message } from "antd";
+import { Form, Input, Space, Row, Col, message } from "antd";
 import { ACCESS_TOKEN_KEY, ICreateUpdateCompanyData } from "../../config";
+import { ActionsButton, SubmitButton } from "../../components/Buttons";
 import { useNavigate } from "react-router-dom";
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
@@ -78,16 +79,14 @@ export const CreateCompany: FC = ({ }) => {
         </Form.Item>
 
         <Space className="action_btns_container">
-          <Button
-            type="default"
-            className="cancel_button"
-            onClick={() => navigate("/companies")}
-          >
-            Cancelar
-          </Button>
-          <Button type="primary" className="submit_button" htmlType="submit">
-            Ok
-          </Button>
+          <ActionsButton 
+            onClick={() => navigate("/companies")} 
+            type="default" 
+            text="Cancelar"/>
+          <SubmitButton 
+            onClick={() => undefined} 
+            type="primary" 
+            text="Ok"/>
         </Space>
       </Form>
     </div>

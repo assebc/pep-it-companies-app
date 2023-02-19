@@ -23,25 +23,3 @@
 .inputs_wrapper {
   width: 80%;
 }
-
-.inputs_wrapper .submit_button {
-  background-color: #BD242A;
-  font-weight: bold;
-}
-
-.inputs_wrapper .submit_button:hover {
-  background-color: #FFFFFF;
-  font-weight: bold;
-  color: #BD242A;
-  border-color: #BD242A;
-}
-
-.inputs_wrapper .cancel_button {
-  font-weight: bold;
-}
-
-.inputs_wrapper .cancel_button:hover {
-  border-color: #BD242A;
-  font-weight: bold;
-  color: #BD242A;
-}

@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Form, Input, Row, Col, Typography, message } from "antd";
+import { Form, Input, Row, Col, Typography, message } from "antd";
+import { ACCESS_TOKEN_KEY } from "../../config";
+import { ActionsButton, SubmitButton } from "../../components/Buttons";
 import api from "../../services/api";
 import "./styles.css";
-import { ACCESS_TOKEN_KEY } from "../../config";
 
 interface ILoginPayload {
   email: string;
@@ -61,7 +62,9 @@ export const Login: FC = () => {
           <Input.Password placeholder="Password" />
         </Form.Item>
 
-        <Link to={"/forgot-password"}>Esqueceu-se da password?</Link>
+        <Link to={"/forgot-password"}>
+          Esqueceu-se da password?
+        </Link>
 
         <Row
           justify="space-between"
@@ -71,31 +74,19 @@ export const Login: FC = () => {
           }}
         >
           <Col span={12}>
-            <Button
-              style={{
-                width: "100%",
-                fontWeight: "bold",
-              }}
-              type="default"
-              className="visit_button"
-              onClick={() => navigate("/companies")}
-            >
-              Visitar
-            </Button>
+            <ActionsButton 
+              onClick={() => navigate("/companies")} 
+              type="default" 
+              style={{width: "100%"}} 
+              text="Visitar"/>
           </Col>
 
           <Col span={12}>
-            <Button
-              style={{
-                width: "100%",
-                fontWeight: "bold",
-              }}
-              type="primary"
-              className="login_button"
-              htmlType="submit"
-            >
-              Login
-            </Button>
+            <SubmitButton 
+              onClick={() => undefined} 
+              type="primary" 
+              style={{ width: "100%"}} 
+              text="Login"/>
           </Col>
         </Row>
       </Form>

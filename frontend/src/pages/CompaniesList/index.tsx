@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Layout, Space, Button, Table } from "antd";
+import { Layout, Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { ACCESS_TOKEN_KEY, ICompany } from "../../config";
+import { ActionsButton, SubmitButton } from "../../components/Buttons";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -54,15 +55,12 @@ export const CompaniesList: FC = () => {
       render: (_, record) => {
         return (
           <Space size="middle">
-            <Button className="actions_button" onClick={() => handleVote(record)}>
-              Votar
-            </Button>
-            <Button
-              className="actions_button"
-              onClick={() => navigate(`/companies/${record.id}`)}
-            >
-              Editar
-            </Button>
+            <ActionsButton 
+              onClick={() => handleVote(record)} 
+              text="Votar"/>
+            <ActionsButton 
+              onClick={() => navigate(`/companies/${record.id}`)} 
+              text="Editar"/>
           </Space>
         );
       },
@@ -99,14 +97,15 @@ export const CompaniesList: FC = () => {
       <div className="align">
         <div className="components">
           {isAdmin && (
-            <Button
-              className="create_button"
+            <ActionsButton 
+              onClick={() => navigate("/companies/new")} 
+              text="Criar" 
               type="primary"
-              size="large"
-              onClick={() => navigate("/companies/new")}
-            >
-              Criar
-            </Button>
+              size="large" 
+              style={{
+                width: "100px", 
+                marginBottom: "8px"
+              }} />
           )}
 
           <Table

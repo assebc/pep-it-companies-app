@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { ConfigProvider, Layout as AntLayout } from "antd";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
@@ -7,8 +8,7 @@ import { CreateCompany } from "./pages/CreateCompany";
 import { UpdateCompany } from "./pages/UpdateCompany";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { Login } from "./pages/Login";
-import "./index.css";
-import { FC } from "react";
+import "./styles.css";
 
 const Layout: FC = () => {
   return (

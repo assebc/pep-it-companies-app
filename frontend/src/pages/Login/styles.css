@@ -5,18 +5,3 @@
   flex-direction: column;
   padding-top: 24%;
 }
-
-.login_button {
-  background-color: #bd242a;
-}
-
-.login_button:hover {
-  background-color: #ffffff;
-  color: #bd242a;
-  border-color: #bd242a;
-}
-
-.visit_button:hover {
-  border-color: #bd242a;
-  color: #bd242a;
-}

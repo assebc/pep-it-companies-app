@@ -4,7 +4,7 @@ import logo from "../../assets/pep-logo.png";
 import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
 import { ACCESS_TOKEN_KEY } from "../../config";
-import "./index.css";
+import "./styles.css";
 
 export const Header: FC = () => {
   const navigate: NavigateFunction = useNavigate();

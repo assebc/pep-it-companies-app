@@ -16,29 +16,3 @@
     align-items: end;
     flex-direction: column;
 }
-
-.components .create_button {
-    margin-bottom: 8px;
-    width: 100px;
-    background-color: #BD242A;
-    font-weight: bold;
-}
-
-.components .create_button:hover {
-    margin-bottom: 8px;
-    width: 100px;
-    background-color: #FFFFFF;
-    font-weight: bold;
-    color: #BD242A;
-    border-color: #BD242A;
-}
-
-.actions_button {
-    font-weight: bold;
-}
-
-.actions_button:hover {
-    border-color: #BD242A !important;
-    font-weight: bold;
-    color: #BD242A !important;
-}

@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input, message, Typography } from "antd";
+import { Form, Input, message, Typography } from "antd";
+import { SubmitButton } from "../../components/Buttons";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -67,19 +68,11 @@ export const ForgotPassword: FC = () => {
         >
           <Input.Password placeholder="Password" />
         </Form.Item>
-
-        <Button
-          type="primary"
-          className="change_button"
-          htmlType="submit"
-          style={{
-            width: "100%",
-            fontWeight: "bold",
-            marginTop: "-24px"
-          }}
-        >
-          Alterar
-        </Button>
+        <SubmitButton 
+          onClick={() => undefined} 
+          type="primary" 
+          style={{width: "100%", marginTop:"-24px"}} 
+          text="Alterar"/>
       </Form>
     </div>
   );

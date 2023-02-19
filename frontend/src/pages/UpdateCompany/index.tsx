@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from "react";
 import {
   Form,
   Input,
-  Button,
   Space,
   InputNumber,
   Row,
@@ -12,9 +11,10 @@ import {
 import {
   ACCESS_TOKEN_KEY,
   ICompany,
-  ICreateUpdateCompanyData,
+  ICreateUpdateCompanyData
 } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
+import { ActionsButton, SubmitButton } from "../../components/Buttons";
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
@@ -127,16 +127,14 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({ }) => {
         </Form.Item>
 
         <Space className="action_btns_container">
-          <Button
-            type="default"
-            className="cancel_button"
-            onClick={() => navigate("/companies")}
-          >
-            Cancelar
-          </Button>
-          <Button type="primary" className="submit_button" htmlType="submit">
-            Ok
-          </Button>
+        <ActionsButton 
+            onClick={() => navigate("/companies")} 
+            type="default" 
+            text="Cancelar"/>
+          <SubmitButton 
+            onClick={() => undefined} 
+            type="primary" 
+            text="Ok"/>
         </Space>
       </Form>
     </div>
