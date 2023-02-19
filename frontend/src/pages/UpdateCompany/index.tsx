@@ -27,7 +27,11 @@ interface IUpdateCompanyProps {
   company?: ICompany;
 }
 
+<<<<<<< HEAD
 export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
+=======
+export const UpdateCompany: FC<IUpdateCompanyProps> = () => {
+>>>>>>> feat: PrivateRoute component, need fixes
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const { id } = useParams();
