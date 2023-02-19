@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Row, Col, Typography, message } from "antd";
 import { ACCESS_TOKEN_KEY } from "../../config";
-import { LoginButton, VisitButton } from "../../components/Buttons";
+import { ActionsButton, SubmitButton } from "../../components/Buttons";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -74,13 +74,19 @@ export const Login: FC = () => {
           }}
         >
           <Col span={12}>
-            {/* FIXME: navigate("/companies") */}
-            <VisitButton />
+            <ActionsButton 
+              onClick={() => navigate("/companies")} 
+              type="default" 
+              style={{width: "100%"}} 
+              text="Visitar"/>
           </Col>
 
           <Col span={12}>
-            {/* FIXME: handleSubmit */}
-            <LoginButton />
+            <SubmitButton 
+              onClick={() => undefined} 
+              type="primary" 
+              style={{ width: "100%"}} 
+              text="Login"/>
           </Col>
         </Row>
       </Form>

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Layout, Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { ACCESS_TOKEN_KEY, ICompany } from "../../config";
-import { ActionsButton, CreateButton } from "../../components/Buttons";
+import { ActionsButton, SubmitButton } from "../../components/Buttons";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -55,10 +55,12 @@ export const CompaniesList: FC = () => {
       render: (_, record) => {
         return (
           <Space size="middle">
-            {/* FIXME: handleVote(record) Votar*/}
-            <ActionsButton />
-            {/* FIXME: navigate(`/companies/${record.id}` Editar */}
-            <ActionsButton />
+            <ActionsButton 
+              onClick={() => handleVote(record)} 
+              text="Votar"/>
+            <ActionsButton 
+              onClick={() => navigate(`/companies/${record.id}`)} 
+              text="Editar"/>
           </Space>
         );
       },
@@ -95,8 +97,15 @@ export const CompaniesList: FC = () => {
       <div className="align">
         <div className="components">
           {isAdmin && (
-            /* FIXME: navigate("/companies/new");*/
-            <CreateButton />
+            <ActionsButton 
+              onClick={() => navigate("/companies/new")} 
+              text="Criar" 
+              type="primary"
+              size="large" 
+              style={{
+                width: "100px", 
+                marginBottom: "8px"
+              }} />
           )}
 
           <Table

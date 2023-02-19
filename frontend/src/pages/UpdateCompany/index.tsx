@@ -14,7 +14,7 @@ import {
   ICreateUpdateCompanyData
 } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
-import { CancelButton, OkButton } from "../../components/Buttons";
+import { ActionsButton, SubmitButton } from "../../components/Buttons";
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
@@ -127,10 +127,14 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({ }) => {
         </Form.Item>
 
         <Space className="action_btns_container">
-          {/* FIXME: navigate("/companies") */}
-          <CancelButton />
-          {/* FIXME: handleSubmit */}
-          <OkButton />
+        <ActionsButton 
+            onClick={() => navigate("/companies")} 
+            type="default" 
+            text="Cancelar"/>
+          <SubmitButton 
+            onClick={() => undefined} 
+            type="primary" 
+            text="Ok"/>
         </Space>
       </Form>
     </div>

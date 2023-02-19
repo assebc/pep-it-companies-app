@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, message, Typography } from "antd";
-import { ChangeButton } from "../../components/Buttons";
+import { SubmitButton } from "../../components/Buttons";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -68,8 +68,11 @@ export const ForgotPassword: FC = () => {
         >
           <Input.Password placeholder="Password" />
         </Form.Item>
-        {/* FIXME: handleSubmit */}
-        <ChangeButton />
+        <SubmitButton 
+          onClick={() => undefined} 
+          type="primary" 
+          style={{width: "100%", marginTop:"-24px"}} 
+          text="Alterar"/>
       </Form>
     </div>
   );
