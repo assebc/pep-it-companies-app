@@ -62,7 +62,9 @@ export const Login: FC = () => {
           <Input.Password placeholder="Password" />
         </Form.Item>
 
-        <Link to={"/forgot-password"}>Esqueceu-se da password?</Link>
+        <Link to={"/forgot-password"}>
+          Esqueceu-se da password?
+        </Link>
 
         <Row
           justify="space-between"

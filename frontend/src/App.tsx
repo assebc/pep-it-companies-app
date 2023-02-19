@@ -11,6 +11,7 @@ import { Login } from "./pages/Login";
 import "./styles.css";
 
 const Layout: FC = () => {
+
   return (
     <AntLayout className="layout">
       <Header />
@@ -19,7 +20,6 @@ const Layout: FC = () => {
         <Route path="/companies/new" element={<CreateCompany />} />
         <Route path="/companies/:id" element={<UpdateCompany />} />
       </Routes>
-
       <Footer />
     </AntLayout>
   );
@@ -38,9 +38,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/*" element={<Layout />} />
-
-            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>
         </BrowserRouter>
       </ConfigProvider>
