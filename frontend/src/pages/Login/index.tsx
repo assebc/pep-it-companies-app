@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Row, Col, Typography, message } from "antd";
 import { ACCESS_TOKEN_KEY } from "../../config";
-import { ActionsButton, SubmitButton } from "../../components/Buttons";
+import { Button } from "../../components/Button";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -62,9 +62,7 @@ export const Login: FC = () => {
           <Input.Password placeholder="Password" />
         </Form.Item>
 
-        <Link to={"/forgot-password"}>
-          Esqueceu-se da password?
-        </Link>
+        <Link to={"/forgot-password"}>Esqueceu-se da password?</Link>
 
         <Row
           justify="space-between"
@@ -74,19 +72,19 @@ export const Login: FC = () => {
           }}
         >
           <Col span={12}>
-            <ActionsButton 
-              onClick={() => navigate("/companies")} 
-              type="default" 
-              style={{width: "100%"}} 
-              text="Visitar"/>
+            <Button
+              onClick={() => navigate("/companies")}
+              styles={{ width: "100%" }}
+              children="Visitar"
+            />
           </Col>
 
           <Col span={12}>
-            <SubmitButton 
-              onClick={() => undefined} 
-              type="primary" 
-              style={{ width: "100%"}} 
-              text="Login"/>
+            <Button
+              htmlType="submit"
+              styles={{ width: "100%" }}
+              children="Login"
+            />
           </Col>
         </Row>
       </Form>

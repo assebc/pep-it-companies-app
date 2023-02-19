@@ -1,20 +1,12 @@
 import { FC, useEffect, useState } from "react";
-import {
-  Form,
-  Input,
-  Space,
-  InputNumber,
-  Row,
-  Col,
-  message,
-} from "antd";
+import { Form, Input, Space, InputNumber, Row, Col, message } from "antd";
 import {
   ACCESS_TOKEN_KEY,
   ICompany,
-  ICreateUpdateCompanyData
+  ICreateUpdateCompanyData,
 } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
-import { ActionsButton, SubmitButton } from "../../components/Buttons";
+import { Button } from "../../components/Button";
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
@@ -23,7 +15,7 @@ interface IUpdateCompanyProps {
   company?: ICompany;
 }
 
-export const UpdateCompany: FC<IUpdateCompanyProps> = ({ }) => {
+export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -127,14 +119,8 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({ }) => {
         </Form.Item>
 
         <Space className="action_btns_container">
-        <ActionsButton 
-            onClick={() => navigate("/companies")} 
-            type="default" 
-            text="Cancelar"/>
-          <SubmitButton 
-            onClick={() => undefined} 
-            type="primary" 
-            text="Ok"/>
+          <Button onClick={() => navigate("/companies")} children="Cancelar" />
+          <Button htmlType="submit" children="Ok" />
         </Space>
       </Form>
     </div>
