@@ -1,17 +1,9 @@
 import { FC, useEffect, useState } from "react";
-import {
-  Form,
-  Input,
-  Space,
-  InputNumber,
-  Row,
-  Col,
-  message,
-} from "antd";
+import { Form, Input, Space, InputNumber, Row, Col, message } from "antd";
 import {
   ACCESS_TOKEN_KEY,
   ICompany,
-  ICreateUpdateCompanyData
+  ICreateUpdateCompanyData,
 } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
 <<<<<<< HEAD
@@ -36,6 +28,12 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [company, setCompany] = useState<ICompany | undefined>();
+
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/");
+    }
+  }, []);
 
   const getCompany = async () => {
     try {
@@ -136,6 +134,7 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = () => {
 
         <Space className="action_btns_container">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Button onClick={() => navigate("/companies")} children="Cancelar" />
           <Button htmlType="submit" children="Ok" />
 =======
@@ -148,6 +147,14 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = () => {
             type="primary" 
             text="Ok"/>
 >>>>>>> refactor: added props to button component
+=======
+          <ActionsButton
+            onClick={() => navigate("/companies")}
+            type="default"
+            text="Cancelar"
+          />
+          <SubmitButton onClick={() => undefined} type="primary" text="Ok" />
+>>>>>>> fix: private routes fixes
         </Space>
       </Form>
     </div>

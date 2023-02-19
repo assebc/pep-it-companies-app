@@ -12,6 +12,12 @@ export const CreateCompany: FC = ({}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/");
+    }
+  }, []);
+
+  useEffect(() => {
     form.resetFields();
   });
 
