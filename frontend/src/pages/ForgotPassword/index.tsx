@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, message, Typography } from "antd";
-import { SubmitButton } from "../../components/Buttons";
+import { Button } from "../../components/Button";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -42,7 +42,7 @@ export const ForgotPassword: FC = () => {
         onFinish={handleSubmit}
         autoComplete="off"
         style={{
-          width: "400px"
+          width: "400px",
         }}
       >
         <Form.Item
@@ -68,11 +68,10 @@ export const ForgotPassword: FC = () => {
         >
           <Input.Password placeholder="Password" />
         </Form.Item>
-        <SubmitButton 
-          onClick={() => undefined} 
-          type="primary" 
-          style={{width: "100%", marginTop:"-24px"}} 
-          text="Alterar"/>
+        <Button
+          styles={{ width: "100%", marginTop: "-24px" }}
+          children="Alterar"
+        />
       </Form>
     </div>
   );
