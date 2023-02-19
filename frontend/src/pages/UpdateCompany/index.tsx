@@ -14,7 +14,11 @@ import {
   ICreateUpdateCompanyData
 } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { Button } from "../../components/Button";
+=======
+import { ActionsButton, SubmitButton } from "../../components/Buttons";
+>>>>>>> refactor: added props to button component
 import TextArea from "antd/es/input/TextArea";
 import api from "../../services/api";
 import "./styles.css";
@@ -127,8 +131,19 @@ export const UpdateCompany: FC<IUpdateCompanyProps> = ({}) => {
         </Form.Item>
 
         <Space className="action_btns_container">
+<<<<<<< HEAD
           <Button onClick={() => navigate("/companies")} children="Cancelar" />
           <Button htmlType="submit" children="Ok" />
+=======
+        <ActionsButton 
+            onClick={() => navigate("/companies")} 
+            type="default" 
+            text="Cancelar"/>
+          <SubmitButton 
+            onClick={() => undefined} 
+            type="primary" 
+            text="Ok"/>
+>>>>>>> refactor: added props to button component
         </Space>
       </Form>
     </div>
