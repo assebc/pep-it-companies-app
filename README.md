@@ -2,6 +2,11 @@
 
 A simple platform for @porqueeuprogramo to improve streams' dynamic!
 
+# .env file
+
+- Go to the `api` folder and rename the file `.env.example` to `.env`
+- Fill all the variables with the correct data to your local project and run the api
+
 # How to run the api
 
 ```sh
@@ -13,7 +18,6 @@ npm install #install dependencies
 
 npm start #start the api
 ```
-Note: needs to be in administrator mod
 
 # Requests collection
 
