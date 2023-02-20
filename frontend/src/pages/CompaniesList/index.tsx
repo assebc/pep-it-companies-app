@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Layout, Space, Table } from "antd";
+import { Layout, message, Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { ACCESS_TOKEN_KEY, ICompany } from "../../config";
 import { Button } from "../../components/Button";
@@ -55,12 +55,12 @@ export const CompaniesList: FC = () => {
       render: (_, record) => {
         return (
           <>
-            <Button 
-              onClick={() => handleVote(record)} 
-              children="Votar" 
+            <Button
+              onClick={() => handleVote(record)}
+              children="Votar"
               styles={{
                 width: "100%",
-                marginBottom: "8px"
+                marginBottom: "8px",
               }}
             />
             <Space size="middle">
@@ -68,10 +68,7 @@ export const CompaniesList: FC = () => {
                 onClick={() => navigate(`/companies/${record.id}`)}
                 children="Editar"
               />
-              <Button
-                onClick={() => handleRemove(record)}
-                children="Remover"
-              />
+              <Button onClick={() => handleRemove(record)} children="Remover" />
             </Space>
           </>
         );
@@ -84,10 +81,6 @@ export const CompaniesList: FC = () => {
       setCompanies(response.data);
     });
   };
-
-  const removeCompany = (record : ICompany) => {
-    api.delete(`companies/${record.id}`);
-  }
 
   useEffect(() => {
     getCompanies();
@@ -104,7 +97,7 @@ export const CompaniesList: FC = () => {
         getCompanies();
       }
     } catch (err: any) {
-      alert(err.response.data.error);
+      message.error(err.response.data.error);
     }
   };
 
@@ -116,10 +109,11 @@ export const CompaniesList: FC = () => {
         },
       });
       if (response.status === 200) {
-        removeCompany(record);
+        message.success("Empresa apagada com sucesso");
+        getCompanies();
       }
     } catch (err: any) {
-      alert(err.response.data.error);
+      message.error(err.response.data.error);
     }
   };
 
