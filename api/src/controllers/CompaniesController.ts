@@ -28,7 +28,9 @@ class CompaniesController {
   }
 
   async listAll(_: Request, response: Response) {
-    const companies: Company[] = await prisma.company.findMany();
+    const companies: Company[] = await prisma.company.findMany({
+      where: { deleted: false },
+    });
 
     return response.json(companies);
   }
@@ -37,7 +39,7 @@ class CompaniesController {
     const { id } = request.params;
 
     const company: Company | null = await prisma.company.findFirst({
-      where: { id: +id },
+      where: { id: +id, deleted: false },
     });
 
     return response.json(company ?? {});
@@ -81,6 +83,23 @@ class CompaniesController {
     });
 
     return response.json(updatedCompany);
+  }
+
+  async delete(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const company: Company | null = await prisma.company.findFirst({
+      where: { id: +id, deleted: false },
+    });
+
+    if (!company) return response.status(400).end();
+
+    await prisma.company.update({
+      where: { id: +id },
+      data: { deleted: true },
+    });
+
+    return response.end();
   }
 }
 
