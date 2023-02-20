@@ -20,6 +20,11 @@ routes.delete("/users", ensureAuthenticated, UserController.delete);
 routes.post("/companies", ensureAuthenticated, CompaniesController.create);
 routes.get("/companies", CompaniesController.listAll);
 routes.get("/companies/:id", ensureAuthenticated, CompaniesController.listOne);
+routes.delete(
+  "/companies/:id",
+  ensureAuthenticated,
+  CompaniesController.delete
+);
 routes.patch(
   "/companies/:id/vote",
   ensureAuthenticated,
