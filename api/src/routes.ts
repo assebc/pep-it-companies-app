@@ -3,12 +3,15 @@ import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import AuthenticationController from "./controllers/AuthenticationController";
 import CompaniesController from "./controllers/CompaniesController";
 import UserController from "./controllers/UserController";
+import DataController from "./controllers/DataController";
 
 const routes: Router = Router();
 
 routes.get("", (_, res) => {
   return res.send("Working");
 });
+
+routes.get("/migrate", DataController.import);
 
 routes.post("/login", AuthenticationController.login);
 
