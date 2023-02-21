@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Layout, Space, Table } from "antd";
+import { Layout, message, Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { ACCESS_TOKEN_KEY, ICompany } from "../../config";
 import { Button } from "../../components/Button";
@@ -31,7 +31,7 @@ export const CompaniesList: FC = () => {
       title: "Website",
       dataIndex: "website_url",
       key: "website_url",
-      width: "250px",
+      width: "220px",
       render: (url) => (
         <Link to={url} target="_blank">
           {url}
@@ -51,16 +51,26 @@ export const CompaniesList: FC = () => {
     {
       title: "Ações",
       key: "actions",
-      width: "180px",
+      width: "212px",
       render: (_, record) => {
         return (
-          <Space size="middle">
-            <Button onClick={() => handleVote(record)} children="Votar" />
+          <>
             <Button
-              onClick={() => navigate(`/companies/${record.id}`)}
-              children="Editar"
+              onClick={() => handleVote(record)}
+              children="Votar"
+              styles={{
+                width: "100%",
+                marginBottom: "8px",
+              }}
             />
-          </Space>
+            <Space size="middle">
+              <Button
+                onClick={() => navigate(`/companies/${record.id}`)}
+                children="Editar"
+              />
+              <Button onClick={() => handleRemove(record)} children="Remover" />
+            </Space>
+          </>
         );
       },
     },
@@ -87,7 +97,23 @@ export const CompaniesList: FC = () => {
         getCompanies();
       }
     } catch (err: any) {
-      alert(err.response.data.error);
+      message.error(err.response.data.error);
+    }
+  };
+
+  const handleRemove = async (record: ICompany) => {
+    try {
+      const response = await api.delete(`companies/${record.id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`,
+        },
+      });
+      if (response.status === 200) {
+        message.success("Empresa apagada com sucesso");
+        getCompanies();
+      }
+    } catch (err: any) {
+      message.error(err.response.data.error);
     }
   };
 
