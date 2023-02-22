@@ -12,6 +12,7 @@ routes.get("", (_, res) => {
 });
 
 routes.get("/migrate", DataController.import);
+routes.get("/companies/download", DataController.download);
 
 routes.post("/login", AuthenticationController.login);
 
