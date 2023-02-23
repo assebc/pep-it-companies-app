@@ -8,20 +8,20 @@ This platform has a total of 6 pages with an intuitive design for a simple but e
 
 Composed by a simple `form` with just the required fields to `login` or `change passowrd` from an account.
 
-![](imgs/login.png) ![](imgs/forgotpassword.png)
+![](.github/assets/login.png) ![](.github/assets/forgotpassword.png)
 
 ## Companies List page
 
 In the below images we can see the `main page` of the `platform` where it's distiguished by the `user` being `authenticated` or not. It's simply composed by a `table` who fills the requirements to identify and give informations about certain `company`.
 
-![](imgs/companieslist_guest.png) ![](imgs/companieslist_admin.png)
+![](.github/assets/companieslist_guest.png) ![](.github/assets/companieslist_admin.png)
 
 
 ## Create and Edit Form page
 
 To `create` or `edit` the informations about certain `company` you will resort this pages.
 
-![](imgs/createform.png) ![](imgs/editform.png)
+![](.github/assets/createform.png) ![](.github/assets/editform.png)
 
 <br>
 
