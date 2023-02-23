@@ -117,21 +117,48 @@ export const CompaniesList: FC = () => {
     }
   };
 
+  const handleExport = async () => {
+    try {
+      const response = await api.get(`companies/download`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`,
+        },
+      });
+      if (response.status === 200) {
+        message.success(response.data.message);
+        getCompanies();
+      }
+    } catch (err: any) {
+      message.error(err.response.data.error);
+    }
+  };
+
   return (
     <Layout.Content className="content">
       <div className="align">
         <div className="components">
           {isAdmin && (
-            <Button
-              onClick={() => navigate("/companies/new")}
-              children="Criar"
-              size="large"
-              htmlType="submit"
-              styles={{
-                width: "100px",
-                marginBottom: "8px",
-              }}
-            />
+            <Space>
+              <Button
+                onClick={handleExport}
+                children="Exportar"
+                size="large"
+                styles={{
+                  width: "100px",
+                  marginBottom: "8px",
+                }}
+              />
+              <Button
+                onClick={() => navigate("/companies/new")}
+                children="Criar"
+                size="large"
+                htmlType="submit"
+                styles={{
+                  width: "100px",
+                  marginBottom: "8px",
+                }}
+              />
+            </Space>
           )}
 
           <Table
