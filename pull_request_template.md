@@ -1,7 +1,7 @@
 # Description
 
 Please include a summary of the changes. Please also include relevant motivation and context. List any dependencies that are required for this change. If you installed any dependence, kindly provide the reason why you need that. 
-As reviewers add @bessitos and @galleonpt.
+As reviewers add @assebc_ and @galleonpt.
 
 PS: If your feature is something visual, you can also provide some screenshots.
 
