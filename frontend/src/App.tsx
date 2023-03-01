@@ -7,6 +7,7 @@ import { CompaniesList } from "./pages/CompaniesList";
 import { CreateCompany } from "./pages/CreateCompany";
 import { UpdateCompany } from "./pages/UpdateCompany";
 import { ForgotPassword } from "./pages/ForgotPassword";
+import { NotFound } from "./pages/NotFound";
 import { Login } from "./pages/Login";
 import "./styles.css";
 
@@ -19,6 +20,7 @@ const Layout: FC = () => {
         <Route path="/companies" element={<CompaniesList />} />
         <Route path="/companies/new" element={<CreateCompany />} />
         <Route path="/companies/:id" element={<UpdateCompany />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </AntLayout>
