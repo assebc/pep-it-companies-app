@@ -20,7 +20,7 @@ docker compose up -d # to start the dockers containers
 
 npm install # install dependencies
 
-npx prisma migration dev # migrations to db
+npx prisma migrate dev # migrations to db
 
 npm run start # start the api
 ```
